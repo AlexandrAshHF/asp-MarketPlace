@@ -1,0 +1,15 @@
+F:\Projects\C#\MarketPlace\Back-end\MarketPlace\MarketPlace.DAL\bin\Debug\net8.0\MarketPlace.DAL.deps.json
+F:\Projects\C#\MarketPlace\Back-end\MarketPlace\MarketPlace.DAL\bin\Debug\net8.0\MarketPlace.DAL.runtimeconfig.json
+F:\Projects\C#\MarketPlace\Back-end\MarketPlace\MarketPlace.DAL\bin\Debug\net8.0\MarketPlace.DAL.dll
+F:\Projects\C#\MarketPlace\Back-end\MarketPlace\MarketPlace.DAL\bin\Debug\net8.0\MarketPlace.DAL.pdb
+F:\Projects\C#\MarketPlace\Back-end\MarketPlace\MarketPlace.DAL\obj\Debug\net8.0\MarketPlace.DAL.csproj.AssemblyReference.cache
+F:\Projects\C#\MarketPlace\Back-end\MarketPlace\MarketPlace.DAL\obj\Debug\net8.0\MarketPlace.DAL.GeneratedMSBuildEditorConfig.editorconfig
+F:\Projects\C#\MarketPlace\Back-end\MarketPlace\MarketPlace.DAL\obj\Debug\net8.0\MarketPlace.DAL.AssemblyInfoInputs.cache
+F:\Projects\C#\MarketPlace\Back-end\MarketPlace\MarketPlace.DAL\obj\Debug\net8.0\MarketPlace.DAL.AssemblyInfo.cs
+F:\Projects\C#\MarketPlace\Back-end\MarketPlace\MarketPlace.DAL\obj\Debug\net8.0\MarketPlace.DAL.csproj.CoreCompileInputs.cache
+F:\Projects\C#\MarketPlace\Back-end\MarketPlace\MarketPlace.DAL\obj\Debug\net8.0\MarketPlace.DAL.sourcelink.json
+F:\Projects\C#\MarketPlace\Back-end\MarketPlace\MarketPlace.DAL\obj\Debug\net8.0\MarketPlace.DAL.dll
+F:\Projects\C#\MarketPlace\Back-end\MarketPlace\MarketPlace.DAL\obj\Debug\net8.0\refint\MarketPlace.DAL.dll
+F:\Projects\C#\MarketPlace\Back-end\MarketPlace\MarketPlace.DAL\obj\Debug\net8.0\MarketPlace.DAL.pdb
+F:\Projects\C#\MarketPlace\Back-end\MarketPlace\MarketPlace.DAL\obj\Debug\net8.0\MarketPlace.DAL.genruntimeconfig.cache
+F:\Projects\C#\MarketPlace\Back-end\MarketPlace\MarketPlace.DAL\obj\Debug\net8.0\ref\MarketPlace.DAL.dll
