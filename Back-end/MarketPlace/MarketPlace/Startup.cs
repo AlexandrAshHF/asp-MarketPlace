@@ -1,4 +1,5 @@
 ﻿using MarketPlace.DAL;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
@@ -17,6 +18,12 @@ namespace MarketPlace.API
             services.AddControllers();
             services.AddSwaggerGen();
 
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, o =>
+            {
+                
+            });
+
             string connection = _configuration.GetConnectionString("DefaultConnection") ?? throw new NullReferenceException("DB connection string is null");
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer());
         }
@@ -31,8 +38,10 @@ namespace MarketPlace.API
                    });
 
                 app.UseHttpsRedirection();
-
                 app.UseRouting();
+
+                app.UseAuthentication();
+                app.UseAuthorization();
 
                 app.UseEndpoints(endpoints =>
                 {
