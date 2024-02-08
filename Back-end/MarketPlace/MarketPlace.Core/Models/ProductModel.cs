@@ -6,8 +6,7 @@ namespace MarketPlace.Core.Models
     {
         public const int MAX_LENGTH_TITLE = 75;
         public const int MAX_LENGTH_DESC = 500;
-        public ProductModel(Guid id, string title, string? typeName, string desc, List<string>imgList,
-            decimal price, SellerModel seller, CategoryModel category, List<ReviewModel>reviews) 
+        public ProductModel(Guid id, string title, string? typeName, string desc, List<string>imgList, decimal price) 
         {
             Id = id;
             Title = title;
@@ -15,9 +14,6 @@ namespace MarketPlace.Core.Models
             Description = desc;
             ImageLinks = imgList;
             Price = price;
-            Seller = seller;
-            Category = category;
-            Reviews = reviews;
         }
         public Guid Id { get; }
         public string Title { get; }
@@ -25,11 +21,7 @@ namespace MarketPlace.Core.Models
         public string Description { get; }
         public List<string> ImageLinks { get; }
         public decimal Price { get; }
-        public SellerModel Seller { get; }
-        public CategoryModel Category { get; }
-        public List<ReviewModel> Reviews { get; }
-        public static (ProductModel, string) CreateProduct(Guid id, string title, string? typeName, string desc, List<string> imgList,
-            decimal price, SellerModel seller, CategoryModel category, List<ReviewModel> reviews)
+        public static (ProductModel, string) CreateProduct(Guid id, string title, string? typeName, string desc, List<string> imgList, decimal price)
         {
             string errorMessege = string.Empty;
 
@@ -39,7 +31,7 @@ namespace MarketPlace.Core.Models
             if (desc.IsNullOrEmpty() || desc.Length > MAX_LENGTH_DESC)
                 errorMessege = $"Description cannot be longer {MAX_LENGTH_DESC} characters and cannot be empty";
 
-            var product = new ProductModel(id, title, typeName, desc, imgList, price, seller, category, reviews);
+            var product = new ProductModel(id, title, typeName, desc, imgList, price);
 
             return (product, errorMessege);
         }
