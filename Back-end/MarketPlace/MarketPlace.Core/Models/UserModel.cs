@@ -1,18 +1,13 @@
-﻿using Microsoft.AspNetCore.Authorization.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MarketPlace.Core.Models
+﻿namespace MarketPlace.Core.Models
 {
-    internal class UserModel
+    public class UserModel
     {
-        public UserModel(Guid id, string un, string email, bool emailConf, string passHash, string role)
+        public const int MAX_LENGTH_USERNAME = 24;
+        public const int MIN_LENGTH_USERNAME = 6;
+        public UserModel(Guid id, string um, string email, bool emailConf, string passHash, string role)
         {
             Id = id;
-            Username = un;
+            Username = um;
             Email = email;
             EmailConfirm = emailConf;
             PasswordHash = passHash;
@@ -24,8 +19,18 @@ namespace MarketPlace.Core.Models
         public bool EmailConfirm { get; }
         public string PasswordHash { get; }
         public string Role { get; }
-        public string ErrorMessege { get; }
-        public static UserModel CreateUser(Guid id, string un, string email, bool emailConf, string passHash, string role) 
-            => new UserModel(id, un, email, emailConf, passHash, role);
+        public static (UserModel, string) CreateUser(Guid id, string um, string email, bool emailConf, string passHash, string role)
+        {
+            string errorMessege = string.Empty;
+
+            if (um.Length > MAX_LENGTH_USERNAME || um.Length < MIN_LENGTH_USERNAME) 
+                errorMessege = "Username length caannot be longer than 24 characters and shorter than 6 characters";
+
+            //verify email
+
+            var user = new UserModel(id, um, email, emailConf, passHash, role);
+
+            return (user, errorMessege);
+        }
     }
 }
