@@ -1,6 +1,6 @@
 ﻿namespace MarketPlace.Infrastructure
 {
-    internal class PasswordHasher
+    public class PasswordHasher
     {
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MarketPlace.DAL.Enities
+﻿namespace MarketPlace.DAL.Enities
 {
     public class ReviewEntity
     {
@@ -13,5 +7,7 @@ namespace MarketPlace.DAL.Enities
         public string Text { get; set; }
         public double Rating { get; set; }
         public DateTime DateOfCreate { get; set; }
+        public Guid ProductId { get; set; }
+        public ProductEntity Product { get; set; }
     }
 }

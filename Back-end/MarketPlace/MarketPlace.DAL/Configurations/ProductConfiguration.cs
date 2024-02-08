@@ -10,12 +10,19 @@ namespace MarketPlace.DAL.Configurations
         {
             builder.HasKey(x => x.Id);
 
-            builder.HasOne(c => c.CategoryEntity)
+            builder.HasOne(p => p.CategoryEntity)
                     .WithMany(c => c.Products)
-                    .HasForeignKey(c => c.Id)
+                    .HasForeignKey(p => p.CategoryId)
                     .IsRequired();
 
-            
+            builder.HasOne(p => p.Seller)
+                .WithMany(s => s.Products)
+                .HasForeignKey(p => p.SellerId)
+                .IsRequired();
+
+            builder.HasMany(p => p.Reviews)
+                .WithOne(r => r.Product)
+                .HasForeignKey(r => r.ProductId);
         }
     }
 }

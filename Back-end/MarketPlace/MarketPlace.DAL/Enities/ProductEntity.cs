@@ -15,6 +15,7 @@ namespace MarketPlace.DAL.Enities
         public List<string>ImageLinks { get; set; }
         public decimal Price { get; set; }
         public Guid SellerId { get; set; }
+        public SellerEntity Seller { get; set; }
         public Guid CategoryId { get; set; }
         public CategoryEntity CategoryEntity { get; set; }
         public List<ReviewEntity>Reviews { get; set; }

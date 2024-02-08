@@ -8,5 +8,7 @@
         public bool EmailConfirm { get; set; }
         public string PasswordHash { get; set; }
         public string Role { get; set; }
+        public Guid? SellerId { get; set; }
+        public SellerEntity? Seller { get; set; }
     }
 }
