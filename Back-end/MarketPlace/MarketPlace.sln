@@ -10,8 +10,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketPlace.Core", "MarketPlace.Core\MarketPlace.Core.csproj", "{2396F404-A1A3-4FD8-B58D-55E74F2CC279}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketPlace.Application", "MarketPlace.Application\MarketPlace.Application.csproj", "{F49CF0B4-63DA-4882-ABAA-466AED2FBBC9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2396F404-A1A3-4FD8-B58D-55E74F2CC279} = {2396F404-A1A3-4FD8-B58D-55E74F2CC279}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketPlace.Infrastructure", "MarketPlace.Infrastructure\MarketPlace.Infrastructure.csproj", "{14A47F57-8E75-430B-95F6-3F0147C6AEE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketPlace.Infrastructure", "MarketPlace.Infrastructure\MarketPlace.Infrastructure.csproj", "{14A47F57-8E75-430B-95F6-3F0147C6AEE6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,4 +1,7 @@
-﻿using MarketPlace.DAL;
+﻿using MarketPlace.Application.Services;
+using MarketPlace.Core.Interfaces.Repositories;
+using MarketPlace.DAL;
+using MarketPlace.DAL.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +18,14 @@ namespace MarketPlace.API
         }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IReviewRepository, ReviewRepository>();
+            services.AddTransient<ISellerRepository, SellerRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+
+            services.AddTransient<ProductsService>();
+
             services.AddControllers();
             services.AddSwaggerGen();
 

@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MarketPlace.Application\MarketPlace.Application.csproj" />
     <ProjectReference Include="..\MarketPlace.DAL\MarketPlace.DAL.csproj" />
   </ItemGroup>
 

@@ -112,5 +112,21 @@ namespace MarketPlace.DAL.Repositories
 
             return models;
         }
+
+        public List<ProductModel> GetAllProducts()
+        {
+            List<ProductModel>models = new List<ProductModel>();
+
+            var entities = _context.Products.ToList();
+
+            if (entities.IsNullOrEmpty())
+                return null;
+
+            foreach (var item in entities)
+                models.Add(ProductModel.CreateProduct(item.Id, item.Title, item.TypeName,
+                                                      item.Description, item.ImageLinks, item.Price).Item1);
+
+            return models;
+        }
     }
 }
