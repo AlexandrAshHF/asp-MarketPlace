@@ -6,24 +6,16 @@ namespace MarketPlace.Core.Models
     {
         public const int MAX_LENGTH_TITLE = 50;
         public const int MAX_NUMBER_CHARACTERISTICS = 10;
-        public CategoryModel(Guid id, string title, List<CategoryModel>? categories, CategoryModel? parrent,
-            List<ProductModel>? products, List<string>characteristics)
+        public CategoryModel(Guid id, string title, List<string>characteristics)
         {
             Id = id;
             Title = title;
-            SubCategories = categories;
-            ParrentCategory = parrent;
-            Products = products;
             Characteristics = characteristics;
         }
         public Guid Id { get; }
         public string Title { get; }
-        public List<CategoryModel>? SubCategories { get; }
-        public CategoryModel? ParrentCategory { get; }
-        public List<ProductModel>? Products { get; }
         public List<string> Characteristics { get; }
-        public static (CategoryModel, string) CreateCategory(Guid id, string title, List<CategoryModel>? categories, CategoryModel? parrent,
-            List<ProductModel>? products, List<string> characteristics)
+        public static (CategoryModel, string) CreateCategory(Guid id, string title, List<string> characteristics)
         {
             string errorMessege = string.Empty;
 
@@ -33,7 +25,7 @@ namespace MarketPlace.Core.Models
             if (characteristics.Count == 0 || characteristics.Count > MAX_NUMBER_CHARACTERISTICS)
                 errorMessege = $"Category should includes more zero characteristics and little {MAX_NUMBER_CHARACTERISTICS}";
 
-            var category = new CategoryModel(id, title, categories, parrent, products, characteristics);
+            var category = new CategoryModel(id, title, characteristics);
 
             return (category, errorMessege);
         }

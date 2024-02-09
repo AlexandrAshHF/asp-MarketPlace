@@ -6,22 +6,20 @@ namespace MarketPlace.Core.Models
     {
         public const int MAX_LENGTH_TEXT = 250;
         public const double MAX_VALUE_RATING = 5.0;
-        public ReviewModel(Guid id, string um, string text, double rating, DateTime time, ProductModel product) 
+        public ReviewModel(Guid id, string um, string text, double rating, DateTime time) 
         {
             Id = id;
             Username = um;
             Text = text;
             Rating = rating;
             DateOfCreate = time;
-            Product = product;
         }
         public Guid Id { get; }
         public string Username { get; }
         public string Text { get; }
         public double Rating { get; }
         public DateTime DateOfCreate { get; }
-        public ProductModel Product { get; }
-        public static (ReviewModel, string) CreateReview(Guid id, string um, string text, double rating, DateTime time, ProductModel product)
+        public static (ReviewModel, string) CreateReview(Guid id, string um, string text, double rating, DateTime time)
         {
             string errorMessege = string.Empty;
 
@@ -31,7 +29,7 @@ namespace MarketPlace.Core.Models
             if (rating < 1 || rating > MAX_VALUE_RATING)
                 errorMessege = $"Rating cannot be smaller 1 or bigger {MAX_VALUE_RATING} points";
 
-            var review = new ReviewModel(id, um, text, rating, time, product);
+            var review = new ReviewModel(id, um, text, rating, time);
 
             return (review, errorMessege);
         }
