@@ -36,7 +36,7 @@ namespace MarketPlace.API
             });
 
             string connection = _configuration.GetConnectionString("DefaultConnection") ?? throw new NullReferenceException("DB connection string is null");
-            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer());
+            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

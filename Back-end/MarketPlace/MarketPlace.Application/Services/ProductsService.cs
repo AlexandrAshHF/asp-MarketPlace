@@ -1,5 +1,6 @@
 ﻿using MarketPlace.Core.Interfaces.Repositories;
 using MarketPlace.Core.Models;
+using Microsoft.IdentityModel.Tokens;
 
 namespace MarketPlace.Application.Services
 {
@@ -10,9 +11,16 @@ namespace MarketPlace.Application.Services
         {
             _productRepository = productRepository;
         }
-        public async Task<Guid> AddProductAsync(ProductModel product, Guid CategoryId, Guid SellerId)
+        public async Task<(Guid, string)> AddProductAsync(Guid id, string title, string? typeName,
+            string desc, List<string> imgList, decimal price,
+            Guid CategoryId, Guid SellerId)
         {
-            return await _productRepository.AddProductAsync(product, CategoryId, SellerId);
+            var product = ProductModel.CreateProduct(id, title, typeName, desc, imgList, price);
+
+            if(!product.Item2.IsNullOrEmpty())
+                return (id,  product.Item2);
+
+            return (await _productRepository.AddProductAsync(product.Item1, CategoryId, SellerId), string.Empty);
         }
         public async Task<Guid> DeleteProductAsync(Guid id)
         {
@@ -26,13 +34,25 @@ namespace MarketPlace.Application.Services
         {
             return await _productRepository.GetProductsByCategoryIdAsync(id);
         }
-        public List<ProductModel>? GetAllProducts()
+        public List<ProductModel> GetAllProducts()
         {
-            return _productRepository.GetAllProducts();
+            var products = _productRepository.GetAllProducts();
+
+            if(products.IsNullOrEmpty())
+                return new List<ProductModel>();
+
+            return products;
         }
-        public async Task<Guid> UpdateProductAsync(ProductModel product, Guid CategoryId, Guid SellerId)
+        public async Task<(Guid, string)> UpdateProductAsync(Guid id, string title, string? typeName,
+            string desc, List<string> imgList, decimal price, 
+            Guid CategoryId, Guid SellerId)
         {
-            return await _productRepository.UpdateProductAsync(product, CategoryId, SellerId);
+            var product = ProductModel.CreateProduct(id, title, typeName, desc, imgList, price);
+
+            if (!product.Item2.IsNullOrEmpty())
+                return (id, product.Item2);
+
+            return (await _productRepository.UpdateProductAsync(product.Item1, CategoryId, SellerId), string.Empty);
         }
         public async Task<List<ProductModel>?> GetProductsBySellerIdAsync(Guid sellerId)
         {
