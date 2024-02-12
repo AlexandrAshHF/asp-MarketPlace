@@ -97,7 +97,7 @@ namespace MarketPlace.DAL.Repositories
 
             return models;
         }
-        public async Task<List<ProductModel>?>GetProductsBySellerIdAsync(Guid sellerId)
+        public async Task<List<ProductModel>?> GetProductsBySellerIdAsync(Guid sellerId)
         {
             var seller = await _context.Sellers.Include(x => x.Products)
                                                .FirstOrDefaultAsync(x => x.Id == sellerId);
@@ -115,7 +115,7 @@ namespace MarketPlace.DAL.Repositories
 
         public List<ProductModel> GetAllProducts()
         {
-            List<ProductModel>models = new List<ProductModel>();
+            List<ProductModel> models = new List<ProductModel>();
 
             var entities = _context.Products.ToList();
 

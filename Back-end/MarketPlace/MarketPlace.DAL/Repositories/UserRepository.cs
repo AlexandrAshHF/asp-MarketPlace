@@ -1,6 +1,7 @@
 ﻿using MarketPlace.Core.Interfaces.Repositories;
 using MarketPlace.Core.Models;
 using MarketPlace.DAL.Enities;
+using Microsoft.EntityFrameworkCore;
 
 namespace MarketPlace.DAL.Repositories
 {
@@ -20,6 +21,18 @@ namespace MarketPlace.DAL.Repositories
 
             var model = UserModel.CreateUser(entity.Id, entity.Username, entity.Email,
                                              entity.EmailConfirm, entity.PasswordHash, entity.Role).Item1;
+
+            return model;
+        }
+        public async Task<UserModel?> GetUserByEmailAsync(string email)
+        {
+            var entity = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
+
+            if (entity == null)
+                return null;
+
+            var model = UserModel.CreateUser(entity.Id, entity.Username, entity.Email,
+                entity.EmailConfirm, entity.PasswordHash, entity.Role).Item1;
 
             return model;
         }

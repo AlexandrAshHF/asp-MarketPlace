@@ -14,8 +14,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketPlace.Application", "
 		{2396F404-A1A3-4FD8-B58D-55E74F2CC279} = {2396F404-A1A3-4FD8-B58D-55E74F2CC279}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketPlace.Infrastructure", "MarketPlace.Infrastructure\MarketPlace.Infrastructure.csproj", "{14A47F57-8E75-430B-95F6-3F0147C6AEE6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,10 +36,6 @@ Global
 		{F49CF0B4-63DA-4882-ABAA-466AED2FBBC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F49CF0B4-63DA-4882-ABAA-466AED2FBBC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F49CF0B4-63DA-4882-ABAA-466AED2FBBC9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{14A47F57-8E75-430B-95F6-3F0147C6AEE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{14A47F57-8E75-430B-95F6-3F0147C6AEE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{14A47F57-8E75-430B-95F6-3F0147C6AEE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{14A47F57-8E75-430B-95F6-3F0147C6AEE6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

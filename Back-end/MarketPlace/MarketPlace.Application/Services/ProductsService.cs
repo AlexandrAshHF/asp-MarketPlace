@@ -1,10 +1,11 @@
-﻿using MarketPlace.Core.Interfaces.Repositories;
+﻿using MarketPlace.Core.Interfaces.DataIntefaces;
+using MarketPlace.Core.Interfaces.Repositories;
 using MarketPlace.Core.Models;
 using Microsoft.IdentityModel.Tokens;
 
 namespace MarketPlace.Application.Services
 {
-    public class ProductsService
+    public class ProductsService : IProductsService
     {
         private IProductRepository _productRepository;
         public ProductsService(IProductRepository productRepository)
@@ -17,8 +18,8 @@ namespace MarketPlace.Application.Services
         {
             var product = ProductModel.CreateProduct(id, title, typeName, desc, imgList, price);
 
-            if(!product.Item2.IsNullOrEmpty())
-                return (id,  product.Item2);
+            if (!product.Item2.IsNullOrEmpty())
+                return (id, product.Item2);
 
             return (await _productRepository.AddProductAsync(product.Item1, CategoryId, SellerId), string.Empty);
         }
@@ -38,13 +39,13 @@ namespace MarketPlace.Application.Services
         {
             var products = _productRepository.GetAllProducts();
 
-            if(products.IsNullOrEmpty())
+            if (products.IsNullOrEmpty())
                 return new List<ProductModel>();
 
             return products;
         }
         public async Task<(Guid, string)> UpdateProductAsync(Guid id, string title, string? typeName,
-            string desc, List<string> imgList, decimal price, 
+            string desc, List<string> imgList, decimal price,
             Guid CategoryId, Guid SellerId)
         {
             var product = ProductModel.CreateProduct(id, title, typeName, desc, imgList, price);

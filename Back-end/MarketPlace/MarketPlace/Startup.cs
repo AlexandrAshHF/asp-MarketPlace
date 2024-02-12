@@ -1,11 +1,13 @@
-﻿using MarketPlace.Application.Services;
+﻿using MarketPlace.Application.Configurations;
+using MarketPlace.Application.Infrastructure;
+using MarketPlace.Application.Services;
+using MarketPlace.Core.Interfaces.Auth;
+using MarketPlace.Core.Interfaces.DataIntefaces;
 using MarketPlace.Core.Interfaces.Repositories;
 using MarketPlace.DAL;
 using MarketPlace.DAL.Repositories;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
+using MarketPlace.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace MarketPlace.API
 {
@@ -18,22 +20,24 @@ namespace MarketPlace.API
         }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<AuthOptions>(_configuration.GetSection(nameof(AuthOptions)));
+
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IReviewRepository, ReviewRepository>();
             services.AddTransient<ISellerRepository, SellerRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
 
-            services.AddTransient<ProductsService>();
+            services.AddTransient<IProductsService, ProductsService>();
+            services.AddTransient<ICategoryService, CategoryService>();
+
+            services.AddTransient<IJwtProvider, JwtProvider>();
+            services.AddTransient<IPasswordHasher, PasswordHasher>();
 
             services.AddControllers();
             services.AddSwaggerGen();
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, o =>
-            {
-                
-            });
+            services.AddApiAuthentication(new AuthOptions());
 
             string connection = _configuration.GetConnectionString("DefaultConnection") ?? throw new NullReferenceException("DB connection string is null");
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));

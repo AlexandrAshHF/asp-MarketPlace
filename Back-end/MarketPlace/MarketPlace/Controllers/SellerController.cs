@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MarketPlace.API.Controllers
 {
-    [Authorize(Roles ="Seller")]
+    [Authorize(Roles = "Seller")]
     [Route("[controller]")]
     [ApiController]
     public class SellerController : ControllerBase

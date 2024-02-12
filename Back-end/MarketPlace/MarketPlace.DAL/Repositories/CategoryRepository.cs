@@ -12,6 +12,16 @@ namespace MarketPlace.DAL.Repositories
         {
             _context = context;
         }
+        public List<CategoryModel> GetParrentUpCategories()
+        {
+            List<CategoryModel>? models = new List<CategoryModel>();
+            var entities = _context.Categories.Where(x => x.ParrentCategory == null);
+
+            foreach (var item in entities)
+                models.Add(CategoryModel.CreateCategory(item.Id, item.Title, item.Characteristics).Item1);
+
+            return models;
+        }
         public async Task<CategoryModel?> GetCategoryByIdAsync(Guid id)
         {
             var entity = await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
@@ -23,7 +33,7 @@ namespace MarketPlace.DAL.Repositories
 
             return model;
         }
-        public async Task<List<CategoryModel>?> GetChildrenByIdAsync(Guid id)
+        public async Task<List<CategoryModel>?> GetChildrenByIdAsync(Guid? id)
         {
             List<CategoryModel>? models = new List<CategoryModel>();
 
@@ -34,7 +44,7 @@ namespace MarketPlace.DAL.Repositories
                 return null;
 
             foreach (var item in entities.SubCategories)
-                models.Add(CategoryModel.CreateCategory(id, item.Title, item.Characteristics).Item1);
+                models.Add(CategoryModel.CreateCategory(item.Id, item.Title, item.Characteristics).Item1);
 
             return models;
         }

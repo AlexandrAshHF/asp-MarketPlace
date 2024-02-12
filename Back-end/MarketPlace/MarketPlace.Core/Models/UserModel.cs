@@ -23,7 +23,7 @@
         {
             string errorMessege = string.Empty;
 
-            if (um.Length > MAX_LENGTH_USERNAME || um.Length < MIN_LENGTH_USERNAME) 
+            if (um.Length > MAX_LENGTH_USERNAME || um.Length < MIN_LENGTH_USERNAME)
                 errorMessege = "Username length caannot be longer than 24 characters and shorter than 6 characters";
 
             //verify email

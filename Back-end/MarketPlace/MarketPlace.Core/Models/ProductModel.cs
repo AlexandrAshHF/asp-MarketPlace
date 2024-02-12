@@ -6,7 +6,7 @@ namespace MarketPlace.Core.Models
     {
         public const int MAX_LENGTH_TITLE = 75;
         public const int MAX_LENGTH_DESC = 500;
-        public ProductModel(Guid id, string title, string? typeName, string desc, List<string>imgList, decimal price) 
+        public ProductModel(Guid id, string title, string? typeName, string desc, List<string> imgList, decimal price)
         {
             Id = id;
             Title = title;

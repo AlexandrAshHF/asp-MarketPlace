@@ -6,7 +6,7 @@ namespace MarketPlace.DAL
 {
     public class ApplicationContext : DbContext
     {
-        public DbSet<CategoryEntity>Categories { get; set; }
+        public DbSet<CategoryEntity> Categories { get; set; }
         public DbSet<ProductEntity> Products { get; set; }
         public DbSet<ReviewEntity> Reviews { get; set; }
         public DbSet<SellerEntity> Sellers { get; set; }

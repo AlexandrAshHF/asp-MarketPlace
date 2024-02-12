@@ -6,7 +6,7 @@ namespace MarketPlace.Core.Models
     {
         public const int MAX_LENGTH_TITLE = 50;
         public const int MAX_NUMBER_CHARACTERISTICS = 10;
-        public CategoryModel(Guid id, string title, List<string>characteristics)
+        public CategoryModel(Guid id, string title, List<string> characteristics)
         {
             Id = id;
             Title = title;

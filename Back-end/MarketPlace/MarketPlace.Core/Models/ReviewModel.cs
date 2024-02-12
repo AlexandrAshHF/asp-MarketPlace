@@ -6,7 +6,7 @@ namespace MarketPlace.Core.Models
     {
         public const int MAX_LENGTH_TEXT = 250;
         public const double MAX_VALUE_RATING = 5.0;
-        public ReviewModel(Guid id, string um, string text, double rating, DateTime time) 
+        public ReviewModel(Guid id, string um, string text, double rating, DateTime time)
         {
             Id = id;
             Username = um;

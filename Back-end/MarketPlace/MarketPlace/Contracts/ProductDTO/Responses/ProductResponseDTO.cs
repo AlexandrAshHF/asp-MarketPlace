@@ -5,8 +5,7 @@
         public Guid Id { get; set; }
         public string Title { get; set; }
         public string TypeName { get; set; }
-        public string Description { get; set; }
-        public string ImageLinks { get; set; }
+        public string ImageLink { get; set; }
         public decimal Price { get; set; }
     }
 }

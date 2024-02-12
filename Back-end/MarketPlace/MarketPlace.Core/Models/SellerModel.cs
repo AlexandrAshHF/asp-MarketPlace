@@ -2,8 +2,8 @@
 {
     public class SellerModel
     {
-        public SellerModel(Guid id, string pn, UserModel user) 
-        { 
+        public SellerModel(Guid id, string pn, UserModel user)
+        {
             Id = id;
             PhoneNumber = pn;
             User = user;

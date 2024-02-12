@@ -7,6 +7,7 @@ namespace MarketPlace.Core.Interfaces.Repositories
         Task<Guid> AddUserAsync(UserModel model);
         Task<Guid> DeleteUserAsync(Guid id);
         Task<UserModel?> GetUserByIdAsync(Guid id);
+        Task<UserModel?> GetUserByEmailAsync(string email);
         Task<Guid> UpdateUserAsync(UserModel model);
     }
 }

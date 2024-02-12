@@ -7,7 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace MarketPlace.API.Controllers
 {
-    [Authorize(Roles ="Seller")]
+    [Authorize(Roles = "Seller")]
     [Route("[controller]")]
     [ApiController]
     public class ProductController : ControllerBase
@@ -22,20 +22,15 @@ namespace MarketPlace.API.Controllers
         [HttpGet("ProductList")]
         public IActionResult ProductList()
         {
-            List<ProductResponseDTO> products = new List<ProductResponseDTO>();
-
-            foreach (var item in _productsService.GetAllProducts())
-            {
-                products.Add(new ProductResponseDTO
+            var products = _productsService.GetAllProducts()
+                .Select(x => new ProductResponseDTO
                 {
-                    Id = item.Id,
-                    Title = item.Title,
-                    Description = item.Description,
-                    TypeName = item.TypeName ?? string.Empty,
-                    ImageLinks = item.ImageLinks[0] ?? string.Empty,
-                    Price = item.Price,
+                    Id = x.Id,
+                    Title = x.Title,
+                    TypeName = x.TypeName,
+                    ImageLink = x.ImageLinks[0] ?? string.Empty,
+                    Price = x.Price,
                 });
-            }
 
             return Ok(products);
         }
@@ -54,7 +49,7 @@ namespace MarketPlace.API.Controllers
                 Id = product.Id,
                 Title = product.Title,
                 Description = product.Description,
-                TypeName= product.TypeName ?? string.Empty,
+                TypeName = product.TypeName ?? string.Empty,
                 ImageLinks = product.ImageLinks ?? new List<string>(),
                 Price = product.Price,
             };
@@ -64,11 +59,11 @@ namespace MarketPlace.API.Controllers
 
         [HttpPut("AddProduct")]
         public async Task<IActionResult> AddProduct(ProductRequestDTO requestDTO)
-        {            
+        {
             var response = await _productsService.AddProductAsync(Guid.NewGuid(), requestDTO.Title, requestDTO.TypeName, requestDTO.Description,
                 requestDTO.ImageLinks, requestDTO.Price, requestDTO.CategoryId, Guid.NewGuid()); // вместо newGuid для seller-а извлечь id из jwt токена
 
-            if(!response.Item2.IsNullOrEmpty())
+            if (!response.Item2.IsNullOrEmpty())
                 return BadRequest(response.Item2);
 
             return Ok(response.Item1);
