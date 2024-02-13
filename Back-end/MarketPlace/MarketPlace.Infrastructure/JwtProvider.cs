@@ -1,7 +1,9 @@
 ﻿using MarketPlace.Application.Configurations;
 using MarketPlace.Core.Interfaces.Auth;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Text;
 
 namespace MarketPlace.Infrastructure
 {
@@ -19,7 +21,18 @@ namespace MarketPlace.Infrastructure
             if(!sellerId.IsNullOrEmpty())
                 claims.Append(new Claim("sellerId", sellerId));
 
-            return "";
+            var signInCredentials = new SigningCredentials(
+                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.key)),
+                    SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                    signingCredentials: signInCredentials,
+                    expires: DateTime.UtcNow.AddHours(_options.lifetime),
+                    claims: claims);
+
+            var tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
+
+            return tokenValue;
         }
     }
 }
