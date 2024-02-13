@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MarketPlace.API.Contracts.AuthDTO;
+using MarketPlace.Core.Interfaces.Auth;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace MarketPlace.API.Controllers
 {
@@ -7,6 +10,12 @@ namespace MarketPlace.API.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
+        private IAuthService _authService;
+        public AccountController(IAuthService authService)
+        {
+            _authService = authService;
+        }
+
         [Authorize]
         [HttpGet("Profile")]
         public async Task<IActionResult> Profile()
@@ -15,15 +24,27 @@ namespace MarketPlace.API.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> Login()
+        public async Task<IActionResult> Login(LoginRequestDTO request)
         {
-            return Ok();
+            var response = await _authService.Login(request.Email, request.Password);
+
+            if(!response.Item2.IsNullOrEmpty())
+                return BadRequest(response.Item2);
+
+            Response.Headers.Add("Authorization", $"Bearer {response.Item1}");
+
+            return Ok(response.Item1);
         }
 
         [HttpPost("Registration")]
-        public async Task<IActionResult> Registration()
+        public async Task<IActionResult> Registration(RegistrationRequestDTO request)
         {
-            return Ok();
+            var response = await _authService.Registration(request.Email, request.Username, request.Password);
+
+            if(!response.Item2.IsNullOrEmpty())
+                return BadRequest(response.Item2);
+
+            return Ok(response.Item1);
         }
 
         [Authorize]

@@ -13,7 +13,7 @@ namespace MarketPlace.DAL
         public DbSet<UserEntity> Users { get; set; }
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
         : base(options)
-        {
+        { 
             Database.EnsureCreated();
         }
 

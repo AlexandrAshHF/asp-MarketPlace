@@ -12,11 +12,6 @@ namespace MarketPlace.DAL.Configurations
                 .WithOne(p => p.Seller)
                 .HasForeignKey(p => p.SellerId)
                 .IsRequired();
-
-            builder.HasOne(s => s.User)
-                .WithOne(u => u.Seller)
-                .HasForeignKey<UserEntity>(u => u.SellerId)
-                .IsRequired();
         }
     }
 }

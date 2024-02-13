@@ -2,6 +2,6 @@
 {
     public interface IJwtProvider
     {
-        string GenerateAuthToken(string userId, string userRole, string? sellerId);
+        string GenerateAuthToken(string userId, string userRole);
     }
 }

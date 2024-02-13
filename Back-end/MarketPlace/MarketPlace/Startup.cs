@@ -9,6 +9,7 @@ using MarketPlace.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
 using System.Text;
 
 namespace MarketPlace.API
@@ -32,6 +33,7 @@ namespace MarketPlace.API
             services.AddTransient<IProductsService, ProductsService>();
             services.AddTransient<ICategoryService, CategoryService>();
 
+            services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<IJwtProvider, JwtProvider>();
             services.AddTransient<IPasswordHasher, PasswordHasher>();
             #endregion  
@@ -54,6 +56,8 @@ namespace MarketPlace.API
                        ValidateLifetime = true,
                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.key)),
                        ValidateIssuerSigningKey = true,
+                       RoleClaimType = ClaimTypes.Role,
+                       NameClaimType = ClaimTypes.Name,
                    };
                });
 
