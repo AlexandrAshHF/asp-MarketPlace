@@ -21,7 +21,9 @@ namespace MarketPlace.Infrastructure
             var token = new JwtSecurityToken(
                     signingCredentials: signInCredentials,
                     expires: DateTime.UtcNow.AddHours(_options.lifetime),
-                    claims: claims);
+                    claims: claims,
+                    audience: _options.audience,
+                    issuer: _options.issuer);
 
             var tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
 

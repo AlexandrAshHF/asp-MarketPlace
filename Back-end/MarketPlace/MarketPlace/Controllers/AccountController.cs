@@ -31,7 +31,7 @@ namespace MarketPlace.API.Controllers
             if(!response.Item2.IsNullOrEmpty())
                 return BadRequest(response.Item2);
 
-            Response.Headers.Add("Authorization", $"Bearer {response.Item1}");
+            Response.Headers.Append("Authorization", $"Bearer {response.Item1}");
 
             return Ok(response.Item1);
         }
@@ -49,9 +49,10 @@ namespace MarketPlace.API.Controllers
 
         [Authorize]
         [HttpPost("Logout")]
-        public async Task<IActionResult> Logout()
+        public IActionResult Logout()
         {
-            return Ok();
+            var result = Response.Headers.Remove("Authorization");
+            return result ? Ok() : BadRequest();
         }
     }
 }
