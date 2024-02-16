@@ -1,9 +1,11 @@
 ﻿using MarketPlace.API.Contracts.ProductDTO.Requests;
 using MarketPlace.API.Contracts.ProductDTO.Responses;
 using MarketPlace.Application.Services;
+using MarketPlace.Core.Interfaces.DataIntefaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
 
 namespace MarketPlace.API.Controllers
 {
@@ -12,8 +14,8 @@ namespace MarketPlace.API.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private ProductsService _productsService;
-        public ProductController(ProductsService productsService)
+        private IProductsService _productsService;
+        public ProductController(IProductsService productsService)
         {
             _productsService = productsService;
         }
@@ -60,8 +62,11 @@ namespace MarketPlace.API.Controllers
         [HttpPut("AddProduct")]
         public async Task<IActionResult> AddProduct(ProductRequestDTO requestDTO)
         {
+            var userClaims = User.Identity as ClaimsIdentity;
+            var sellerId = userClaims.FindFirst("sellerId").Value ?? throw new ArgumentNullException("userClaims.FindFirst(\"sellerId\")", "Missing sellerId in Claims");
+
             var response = await _productsService.AddProductAsync(Guid.NewGuid(), requestDTO.Title, requestDTO.TypeName, requestDTO.Description,
-                requestDTO.ImageLinks, requestDTO.Price, requestDTO.CategoryId, Guid.NewGuid()); // вместо newGuid для seller-а извлечь id из jwt токена
+                requestDTO.ImageLinks, requestDTO.Price, requestDTO.CategoryId, new Guid(sellerId)); 
 
             if (!response.Item2.IsNullOrEmpty())
                 return BadRequest(response.Item2);
@@ -80,8 +85,11 @@ namespace MarketPlace.API.Controllers
         [HttpPut("UpdateProduct")]
         public async Task<IActionResult> UpdateProduct(ProductRequestDTO requestDTO)
         {
+            var userClaims = User.Identity as ClaimsIdentity;
+            var sellerId = userClaims.FindFirst("sellerId").Value ?? throw new ArgumentNullException("userClaims.FindFirst(\"sellerId\")", "Missing sellerId in Claims");
+
             var response = await _productsService.UpdateProductAsync(requestDTO.Id, requestDTO.Title, requestDTO.TypeName, requestDTO.Description,
-                        requestDTO.ImageLinks, requestDTO.Price, requestDTO.CategoryId, Guid.NewGuid()); // вместо newGuid для seller-а извлечь id из jwt токена
+                        requestDTO.ImageLinks, requestDTO.Price, requestDTO.CategoryId, new Guid(sellerId));
 
             if (!response.Item2.IsNullOrEmpty())
                 return BadRequest(response.Item2);

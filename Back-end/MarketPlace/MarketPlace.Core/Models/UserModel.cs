@@ -4,7 +4,7 @@
     {
         public const int MAX_LENGTH_USERNAME = 24;
         public const int MIN_LENGTH_USERNAME = 6;
-        public UserModel(Guid id, string um, string email, bool emailConf, string passHash, string role)
+        public UserModel(Guid id, string um, string email, bool emailConf, string passHash, string role, string? sellerId)
         {
             Id = id;
             Username = um;
@@ -19,7 +19,8 @@
         public bool EmailConfirm { get; }
         public string PasswordHash { get; }
         public string Role { get; }
-        public static (UserModel, string) CreateUser(Guid id, string um, string email, bool emailConf, string passHash, string role)
+        public string? SellerId { get; }
+        public static (UserModel, string) CreateUser(Guid id, string um, string email, bool emailConf, string passHash, string role, string? sellerId)
         {
             string errorMessege = string.Empty;
 
@@ -28,7 +29,7 @@
 
             //verify email
 
-            var user = new UserModel(id, um, email, emailConf, passHash, role);
+            var user = new UserModel(id, um, email, emailConf, passHash, role, sellerId);
 
             return (user, errorMessege);
         }

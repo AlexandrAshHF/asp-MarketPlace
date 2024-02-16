@@ -23,7 +23,7 @@ namespace MarketPlace.Application.Services
                 return (new Guid(), "User with this email already exists");
 
             var hash = _passwordHasher.GenerateHash(password);
-            var user = UserModel.CreateUser(Guid.NewGuid(), username, email, false, hash, string.Empty);
+            var user = UserModel.CreateUser(Guid.NewGuid(), username, email, false, hash, string.Empty, null);
 
             if (!user.Item2.IsNullOrEmpty())
                 return (new Guid(), user.Item2);
@@ -39,7 +39,7 @@ namespace MarketPlace.Application.Services
             if (user == null || !_passwordHasher.Verify(password, user.PasswordHash))
                 return (string.Empty, "Incorrect email or password");
 
-            var token = _jwtProvider.GenerateAuthToken(user.Id.ToString(), user.Role);
+            var token = _jwtProvider.GenerateAuthToken(user.Id.ToString(), user.Role, user.SellerId);
 
             return (token, string.Empty);
         }

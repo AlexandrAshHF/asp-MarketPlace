@@ -20,7 +20,7 @@ namespace MarketPlace.DAL.Repositories
                 return null;
 
             var model = UserModel.CreateUser(entity.Id, entity.Username, entity.Email,
-                                             entity.EmailConfirm, entity.PasswordHash, entity.Role).Item1;
+                                             entity.EmailConfirm, entity.PasswordHash, entity.Role, entity.SellerId.ToString()).Item1;
 
             return model;
         }
@@ -32,7 +32,7 @@ namespace MarketPlace.DAL.Repositories
                 return null;
 
             var model = UserModel.CreateUser(entity.Id, entity.Username, entity.Email,
-                entity.EmailConfirm, entity.PasswordHash, entity.Role).Item1;
+                entity.EmailConfirm, entity.PasswordHash, entity.Role, entity.SellerId.ToString()).Item1;
 
             return model;
         }

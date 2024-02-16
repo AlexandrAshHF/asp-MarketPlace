@@ -23,7 +23,7 @@ namespace MarketPlace.DAL.Repositories
 
             var user = UserModel.CreateUser(entity.User.Id, entity.User.Username,
                 entity.User.Email, entity.User.EmailConfirm,
-                entity.User.PasswordHash, entity.User.Role).Item1;
+                entity.User.PasswordHash, entity.User.Role, entity.Id.ToString()).Item1;
 
             var model = SellerModel.CreateSeller(id, entity.PhoneNumber, user).Item1;
 

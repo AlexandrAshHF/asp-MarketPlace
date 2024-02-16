@@ -10,9 +10,12 @@ namespace MarketPlace.Infrastructure
     public class JwtProvider : IJwtProvider
     {
         private readonly AuthOptions  _options = new AuthOptions();
-        public string GenerateAuthToken(string userId, string userRole)
+        public string GenerateAuthToken(string userId, string userRole, string? sellerId)
         {
             Claim[] claims = [new("userId", userId), new("userRole", userRole)];
+
+            if (!sellerId.IsNullOrEmpty())
+                claims.Append(new("sellerId", sellerId));
 
             var signInCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.key)),
