@@ -1,6 +1,6 @@
-# My MarketPlace
+ #  <center>MyMarketPlace</center>
 
-My MarketPlace is an educational project that simulates the operation of a marketplace where users can buy and sell products. The project was implemented using multi-layer architecture and SOLID principles. The project is monolithic, that is, it consists of one application, which includes both front-end and back-end parts. This project is my first (**more or less large**) project aimed at gaining experience and expanding knowledge.  
+MyMarketPlace is an educational project that simulates the operation of a marketplace where users can buy and sell products. The project was implemented using multi-layer architecture and SOLID principles. The project is monolithic, that is, it consists of one application, which includes both front-end and back-end parts. This project is my first (**more or less large**) project aimed at gaining experience and expanding knowledge.  
   
 ***The project is under development***
 
@@ -9,6 +9,7 @@ My MarketPlace is an educational project that simulates the operation of a marke
  - [Screenshots](#screenshots)
  - [How to run in Debug mode](#how-to-run-in-debug-mode)
  - [Technology stack](#technology-stack)
+ - [Useful links](#useful-links)
 
 ## Functionality
 - **General:**
