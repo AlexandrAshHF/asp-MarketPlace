@@ -13,5 +13,6 @@
         public Guid CategoryId { get; set; }
         public CategoryEntity CategoryEntity { get; set; }
         public List<ReviewEntity> Reviews { get; set; }
+        public List<OrderEntity> Orders { get; set; }
     }
 }

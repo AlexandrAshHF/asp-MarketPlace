@@ -31,9 +31,9 @@ namespace MarketPlace.API
             services.AddTransient<IUserRepository, UserRepository>();
 
             services.AddTransient<IProductsService, ProductsService>();
-            services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<ICategoryService, CategoriesService>();
 
-            services.AddTransient<IAuthService, AuthService>();
+            services.AddTransient<IUsersService, UsersService>();
             services.AddTransient<IJwtProvider, JwtProvider>();
             services.AddTransient<IPasswordHasher, PasswordHasher>();
             #endregion  

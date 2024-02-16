@@ -11,6 +11,8 @@ namespace MarketPlace.DAL
         public DbSet<ReviewEntity> Reviews { get; set; }
         public DbSet<SellerEntity> Sellers { get; set; }
         public DbSet<UserEntity> Users { get; set; }
+        public DbSet<OrderEntity> Orders { get; set; }
+        public DbSet<PlaceEntity> Places { get; set; }
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
         : base(options)
         { 
@@ -24,6 +26,8 @@ namespace MarketPlace.DAL
             modelBuilder.ApplyConfiguration(new ReviewConfiguration());
             modelBuilder.ApplyConfiguration(new SellerConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderConfiguration());
+            modelBuilder.ApplyConfiguration(new PlaceConfiguration());
         }
     }
 }

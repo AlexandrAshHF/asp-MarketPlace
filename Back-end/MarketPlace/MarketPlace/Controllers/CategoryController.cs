@@ -12,8 +12,8 @@ namespace MarketPlace.API.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        private CategoryService _categoryService;
-        public CategoryController(CategoryService categoryService)
+        private CategoriesService _categoryService;
+        public CategoryController(CategoriesService categoryService)
         {
             _categoryService = categoryService;
         }

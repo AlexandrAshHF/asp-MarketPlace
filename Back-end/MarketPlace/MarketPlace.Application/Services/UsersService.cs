@@ -5,12 +5,12 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace MarketPlace.Application.Services
 {
-    public class AuthService : IAuthService
+    public class UsersService : IUsersService
     {
         private IUserRepository _userRepository;
         private IJwtProvider _jwtProvider;
         private IPasswordHasher _passwordHasher;
-        public AuthService(IUserRepository userRepository, IJwtProvider jwtProvider, IPasswordHasher passwordHasher)
+        public UsersService(IUserRepository userRepository, IJwtProvider jwtProvider, IPasswordHasher passwordHasher)
         {
             _userRepository = userRepository;
             _jwtProvider = jwtProvider;

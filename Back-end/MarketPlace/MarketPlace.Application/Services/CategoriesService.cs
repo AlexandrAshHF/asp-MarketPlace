@@ -5,10 +5,10 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace MarketPlace.Application.Services
 {
-    public class CategoryService : ICategoryService
+    public class CategoriesService : ICategoryService
     {
         private ICategoryRepository _categoryRepository;
-        public CategoryService(ICategoryRepository categoryRepository)
+        public CategoriesService(ICategoryRepository categoryRepository)
         {
             _categoryRepository = categoryRepository;
         }

@@ -12,6 +12,7 @@
             EmailConfirm = emailConf;
             PasswordHash = passHash;
             Role = role;
+            SellerId = sellerId;
         }
         public Guid Id { get; }
         public string Username { get; }

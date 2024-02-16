@@ -10,8 +10,8 @@ namespace MarketPlace.API.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private IAuthService _authService;
-        public AccountController(IAuthService authService)
+        private IUsersService _authService;
+        public AccountController(IUsersService authService)
         {
             _authService = authService;
         }
