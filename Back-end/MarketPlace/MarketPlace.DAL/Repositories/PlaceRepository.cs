@@ -1,10 +1,10 @@
-﻿using MarketPlace.Core.Models;
+﻿using MarketPlace.Core.Interfaces.Repositories;
+using MarketPlace.Core.Models;
 using MarketPlace.DAL.Enities;
-using Microsoft.EntityFrameworkCore;
 
 namespace MarketPlace.DAL.Repositories
 {
-    public class PlaceRepository
+    public class PlaceRepository : IPlaceRepository
     {
         private ApplicationContext _context;
         public PlaceRepository(ApplicationContext context)
@@ -16,16 +16,16 @@ namespace MarketPlace.DAL.Repositories
             var models = _context.Places.Select(x => PlaceModel.CreatePlace(x.Id, x.City, x.Address).Item1).ToList();
             return models;
         }
-        public async Task<PlaceModel>GetPlaceById(Guid id)
+        public async Task<PlaceModel> GetPlaceById(Guid id)
         {
             var entity = await _context.Places.FindAsync(id);
 
-            if(entity == null)
+            if (entity == null)
                 throw new ArgumentNullException(nameof(entity), "PlaceEntity by id is null");
 
             return PlaceModel.CreatePlace(entity.Id, entity.City, entity.Address).Item1;
         }
-        public async Task<Guid>AddPlace(PlaceModel place)
+        public async Task<Guid> AddPlace(PlaceModel place)
         {
             var entity = new PlaceEntity
             {
@@ -39,7 +39,7 @@ namespace MarketPlace.DAL.Repositories
 
             return entity.Id;
         }
-        public async Task<Guid>DeletePlace(Guid id)
+        public async Task<Guid> DeletePlace(Guid id)
         {
             _context.Places.Remove(new PlaceEntity { Id = id });
             await _context.SaveChangesAsync();

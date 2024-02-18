@@ -1,6 +1,5 @@
 ﻿using MarketPlace.API.Contracts.ProductDTO.Requests;
 using MarketPlace.API.Contracts.ProductDTO.Responses;
-using MarketPlace.Application.Services;
 using MarketPlace.Core.Interfaces.DataIntefaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

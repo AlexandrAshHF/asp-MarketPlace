@@ -43,5 +43,14 @@ namespace MarketPlace.Application.Services
 
             return (token, string.Empty);
         }
+        public async Task<UserModel>GetUserById(Guid id)
+        {
+            var model = await _userRepository.GetUserByIdAsync(id);
+
+            if(model == null)
+                throw new ArgumentNullException(nameof(model), $"User with id:{id} is null");
+
+            return model;
+        }
     }
 }

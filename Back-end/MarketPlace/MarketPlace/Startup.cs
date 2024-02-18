@@ -29,9 +29,12 @@ namespace MarketPlace.API
             services.AddTransient<IReviewRepository, ReviewRepository>();
             services.AddTransient<ISellerRepository, SellerRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IPlaceRepository, PlaceRepository>();
 
             services.AddTransient<IProductsService, ProductsService>();
             services.AddTransient<ICategoryService, CategoriesService>();
+            services.AddTransient<IReviewsService, ReviewsService>();
 
             services.AddTransient<IUsersService, UsersService>();
             services.AddTransient<IJwtProvider, JwtProvider>();
