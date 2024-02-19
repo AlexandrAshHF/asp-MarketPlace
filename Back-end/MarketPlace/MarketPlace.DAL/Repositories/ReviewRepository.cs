@@ -47,7 +47,6 @@ namespace MarketPlace.DAL.Repositories
                 Text = review.Text,
                 Rating = review.Rating,
                 DateOfCreate = review.DateOfCreate,
-                Product = new ProductEntity { Id = productId },
                 ProductId = productId
             };
 
@@ -65,7 +64,6 @@ namespace MarketPlace.DAL.Repositories
                 Text = review.Text,
                 Rating = review.Rating,
                 DateOfCreate = review.DateOfCreate,
-                Product = new ProductEntity { Id = productId },
                 ProductId = productId
             };
 

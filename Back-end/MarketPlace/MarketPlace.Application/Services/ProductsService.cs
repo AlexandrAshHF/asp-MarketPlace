@@ -19,7 +19,7 @@ namespace MarketPlace.Application.Services
             var product = ProductModel.CreateProduct(id, title, typeName, desc, imgList, price);
 
             if (!product.Item2.IsNullOrEmpty())
-                return (id, product.Item2);
+                return (Guid.Empty, product.Item2);
 
             return (await _productRepository.AddProductAsync(product.Item1, CategoryId, SellerId), string.Empty);
         }

@@ -41,8 +41,6 @@ namespace MarketPlace.DAL.Repositories
                 Description = product.Description,
                 ImageLinks = product.ImageLinks,
                 Price = product.Price,
-                CategoryEntity = new CategoryEntity { Id = CategoryId },
-                Seller = new SellerEntity { Id = SellerId },
                 SellerId = SellerId,
                 CategoryId = CategoryId,
                 Reviews = new List<ReviewEntity>()
@@ -63,8 +61,6 @@ namespace MarketPlace.DAL.Repositories
                 Description = product.Description,
                 ImageLinks = product.ImageLinks,
                 Price = product.Price,
-                CategoryEntity = new CategoryEntity { Id = CategoryId },
-                Seller = new SellerEntity { Id = SellerId },
                 SellerId = SellerId,
                 CategoryId = CategoryId,
                 Reviews = new List<ReviewEntity>()

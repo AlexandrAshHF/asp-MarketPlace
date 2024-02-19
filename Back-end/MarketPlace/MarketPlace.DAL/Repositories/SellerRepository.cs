@@ -36,7 +36,6 @@ namespace MarketPlace.DAL.Repositories
                 Id = seller.Id,
                 PhoneNumber = seller.PhoneNumber,
                 Products = new List<ProductEntity>(),
-                User = new UserEntity { Id = seller.User.Id },
                 UserId = seller.User.Id
             };
 
