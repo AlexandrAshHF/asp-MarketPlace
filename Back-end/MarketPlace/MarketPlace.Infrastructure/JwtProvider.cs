@@ -9,7 +9,7 @@ namespace MarketPlace.Infrastructure
 {
     public class JwtProvider : IJwtProvider
     {
-        private readonly AuthOptions  _options = new AuthOptions();
+        private readonly AuthOptions _options = new AuthOptions();
         public string GenerateAuthToken(string userId, string userRole, string? sellerId)
         {
             Claim[] claims = [new("userId", userId), new("userRole", userRole)];

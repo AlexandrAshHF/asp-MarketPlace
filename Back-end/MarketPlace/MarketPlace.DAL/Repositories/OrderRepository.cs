@@ -52,6 +52,20 @@ namespace MarketPlace.DAL.Repositories
 
             return model.Item1;
         }
+        public async Task<List<OrderModel>> GetOrdersBySellerIdAsync(Guid sellerId)
+        {
+            var entites = await _context.Orders
+                .Include(x => x.Products.Where(p => p.SellerId == sellerId))
+                .Include(x => x.Place).ToListAsync();
+
+            var models = entites
+                .Select(x => OrderModel.CreateOrder(x.Id, x.UserId,
+                PlaceModel.CreatePlace(x.PlaceId, x.Place.City, x.Place.Address).Item1,
+                x.Products.Select(p => ProductModel.CreateProduct(p.Id, p.Title, p.TypeName, p.Description,
+                p.ImageLinks, p.Price).Item1).ToList())).ToList();
+
+            return models.Select(x => x.Item1).ToList();
+        }
         public async Task<Guid> AddOrder(OrderModel model)
         {
             var entity = new OrderEntity
@@ -69,6 +83,13 @@ namespace MarketPlace.DAL.Repositories
             await _context.SaveChangesAsync();
 
             return entity.Id;
+        }
+        public async Task<Guid> DeleteOrder(Guid id)
+        {
+            _context.Orders.Remove(new OrderEntity { Id = id });
+            await _context.SaveChangesAsync();
+
+            return id;
         }
     }
 }

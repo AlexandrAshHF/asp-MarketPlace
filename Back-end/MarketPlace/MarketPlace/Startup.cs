@@ -35,6 +35,8 @@ namespace MarketPlace.API
             services.AddTransient<IProductsService, ProductsService>();
             services.AddTransient<ICategoryService, CategoriesService>();
             services.AddTransient<IReviewsService, ReviewsService>();
+            services.AddTransient<IOrdersService, OrdersService>();
+            services.AddTransient<IPlacesService, PlacesService>();
 
             services.AddTransient<IUsersService, UsersService>();
             services.AddTransient<IJwtProvider, JwtProvider>();

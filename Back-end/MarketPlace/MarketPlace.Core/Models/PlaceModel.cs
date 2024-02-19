@@ -4,7 +4,7 @@ namespace MarketPlace.Core.Models
 {
     public class PlaceModel
     {
-        private PlaceModel(Guid id, string city, string address) 
+        private PlaceModel(Guid id, string city, string address)
         {
             Id = id;
             City = city;

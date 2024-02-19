@@ -10,6 +10,6 @@
         public string Role { get; set; }
         public Guid? SellerId { get; set; }
         public SellerEntity? Seller { get; set; }
-        public List<OrderEntity>Orders { get; set; }
+        public List<OrderEntity> Orders { get; set; }
     }
 }

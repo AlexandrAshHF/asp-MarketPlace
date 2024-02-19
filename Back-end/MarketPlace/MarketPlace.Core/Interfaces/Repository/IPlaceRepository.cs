@@ -8,5 +8,6 @@ namespace MarketPlace.Core.Interfaces.Repositories
         Task<Guid> DeletePlace(Guid id);
         Task<PlaceModel> GetPlaceById(Guid id);
         List<PlaceModel> GetPlaces();
+        Task<Guid> UpdatePlace(PlaceModel place);
     }
 }

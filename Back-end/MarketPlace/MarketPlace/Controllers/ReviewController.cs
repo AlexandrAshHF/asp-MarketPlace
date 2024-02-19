@@ -19,7 +19,7 @@ namespace MarketPlace.API.Controllers
         {
             _reviewsService = reviewsService;
             _usersService = usersService;
-        } 
+        }
 
         [AllowAnonymous]
         [HttpGet("ReviewList")]

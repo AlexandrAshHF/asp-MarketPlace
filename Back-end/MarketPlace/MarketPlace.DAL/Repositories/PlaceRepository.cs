@@ -39,6 +39,20 @@ namespace MarketPlace.DAL.Repositories
 
             return entity.Id;
         }
+        public async Task<Guid> UpdatePlace(PlaceModel place)
+        {
+            var entity = new PlaceEntity
+            {
+                Id = place.Id,
+                City = place.City,
+                Address = place.Address,
+            };
+
+            _context.Places.Update(entity);
+            await _context.SaveChangesAsync();
+
+            return entity.Id;
+        }
         public async Task<Guid> DeletePlace(Guid id)
         {
             _context.Places.Remove(new PlaceEntity { Id = id });

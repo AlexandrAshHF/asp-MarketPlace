@@ -15,7 +15,7 @@ namespace MarketPlace.DAL
         public DbSet<PlaceEntity> Places { get; set; }
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
         : base(options)
-        { 
+        {
             Database.EnsureCreated();
         }
 

@@ -20,8 +20,8 @@ namespace MarketPlace.API.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("ProductList")]
-        public IActionResult ProductList()
+        [HttpGet("ProductsList")]
+        public IActionResult ProductsList()
         {
             var products = _productsService.GetAllProducts()
                 .Select(x => new ProductResponseDTO
@@ -65,7 +65,7 @@ namespace MarketPlace.API.Controllers
             var sellerId = userClaims.FindFirst("sellerId").Value ?? throw new ArgumentNullException("userClaims.FindFirst(\"sellerId\")", "Missing sellerId in Claims");
 
             var response = await _productsService.AddProductAsync(Guid.NewGuid(), requestDTO.Title, requestDTO.TypeName, requestDTO.Description,
-                requestDTO.ImageLinks, requestDTO.Price, requestDTO.CategoryId, new Guid(sellerId)); 
+                requestDTO.ImageLinks, requestDTO.Price, requestDTO.CategoryId, new Guid(sellerId));
 
             if (!response.Item2.IsNullOrEmpty())
                 return BadRequest(response.Item2);
@@ -94,6 +94,12 @@ namespace MarketPlace.API.Controllers
                 return BadRequest(response.Item2);
 
             return Ok(response);
+        }
+
+        [HttpGet("SellerProductsList")]
+        public async Task<IActionResult> SellerProductsList()
+        {
+            return Ok();
         }
     }
 }

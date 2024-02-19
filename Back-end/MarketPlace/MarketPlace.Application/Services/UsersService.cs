@@ -8,6 +8,7 @@ namespace MarketPlace.Application.Services
     public class UsersService : IUsersService
     {
         private IUserRepository _userRepository;
+        private ISellerRepository _sellerRepository;
         private IJwtProvider _jwtProvider;
         private IPasswordHasher _passwordHasher;
         public UsersService(IUserRepository userRepository, IJwtProvider jwtProvider, IPasswordHasher passwordHasher)
@@ -43,14 +44,26 @@ namespace MarketPlace.Application.Services
 
             return (token, string.Empty);
         }
-        public async Task<UserModel>GetUserById(Guid id)
+        public async Task<UserModel> GetUserById(Guid id)
         {
             var model = await _userRepository.GetUserByIdAsync(id);
 
-            if(model == null)
+            if (model == null)
                 throw new ArgumentNullException(nameof(model), $"User with id:{id} is null");
 
             return model;
+        }
+        public async Task<(Guid, string)> RegistrationSeller(Guid userId, string phoneNumber)
+        {
+            var userModel = await GetUserById(userId);
+            var model = SellerModel.CreateSeller(Guid.NewGuid(), phoneNumber, userModel);
+
+            if (!model.Item2.IsNullOrEmpty())
+                return (model.Item1.Id, model.Item2);
+
+            var result = await _sellerRepository.AddSellerAsync(model.Item1);
+
+            return (result, string.Empty);
         }
     }
 }
