@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  SqlServerDb:
+        container_name: SqlServerContainer
+        image: mcr.microsoft.com/mssql/server:2017-latest
+        ports:
+            - 8002:1433
+        environment:
+            - ACCEPT_EULA=Y
+
+  marketplace.api:
+    container_name: WebApiContainer
+    image: ${DOCKER_REGISTRY-}marketplaceapi
+    ports:
+        - 8001:80
+    build:
+      context: .
+      dockerfile: MarketPlace/Dockerfile
