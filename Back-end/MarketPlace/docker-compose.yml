@@ -8,6 +8,7 @@ services:
             - 8002:1433
         environment:
             - ACCEPT_EULA=Y
+            - MSSQL_SA_PASSWORD=S2a0s0h5a0112
 
   marketplace.api:
     container_name: WebApiContainer
