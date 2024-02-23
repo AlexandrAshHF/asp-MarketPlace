@@ -1,7 +1,7 @@
 import React from 'react';
-import classes from '../AuthForm.module.css'
-import AuthButton from '../../../UI/Buttons/Auth/AuthButton'
-import AuthInput from '../../../UI/Inputs/Auth/AuthInput';
+import classes from "./styles/AuthForm.module.css"
+import AuthButton from '../../UI/Buttons/Auth/AuthButton'
+import AuthInput from '../../UI/Inputs/Auth/AuthInput';
 
 function RegistrationForm({errorMessege}) {
     return (

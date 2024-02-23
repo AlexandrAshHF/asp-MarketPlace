@@ -1,5 +1,6 @@
 import React from 'react';
-import classes from "./ProductItem.module.css"
+import classes from "./styles/ProductItem.module.css";
+import BasketButton from "../../UI/Buttons/Product/BasketButton"
 
 function ProductItem(props){
     return(
@@ -9,9 +10,7 @@ function ProductItem(props){
             <div className={classes.productInfo}>
                 <label>Title | Typename</label>
                 <label>Price: 31.5$</label>
-                <button className={classes.productButton}>
-                    
-                </button>
+                <BasketButton/>
             </div>
         </div>
     );

@@ -1,11 +1,11 @@
 import React from "react";
 
-function CategoryItem() {
+function Profile() {
     return(
         <div>
-            
+
         </div>
     );
 }
 
-export default CategoryItem;
+export default Profile;
