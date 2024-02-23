@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from "./LoginForm.module.css"
+import classes from "../AuthForm.module.css"
 import AuthButton from '../../../UI/Buttons/Auth/AuthButton'
 import AuthInput from '../../../UI/Inputs/Auth/AuthInput';
 
@@ -9,7 +9,7 @@ function LoginForm({errorMessege}) {
         <label className={classes.headForm}>Authorization</label>
 
         <AuthInput type='email' placeholder='Email'/>
-        <AuthInput type='password' placeholder='Password'/>
+        <AuthInput type='password' placeholder='Password' maxLength="24"/>
 
         <label className={classes.errorMessege}>{errorMessege}</label>
 
