@@ -1,0 +1,11 @@
+.AuthInput{
+    height: 25px;
+    width: 100px;
+    border: 1px solid black;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.AuthInput:focus{
+    outline: none;
+}

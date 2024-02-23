@@ -1,0 +1,16 @@
+.authButton{
+    min-width: 100px;
+    max-width: 300px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: rgba(140, 245, 238, 0.1);
+}
+
+.authButton:hover{
+    cursor: pointer;
+    border: none;
+    box-shadow: 0px 0px 5px 0px;
+    text-shadow: 0px 0px 5px 0px;
+    background-color: transparent;
+}

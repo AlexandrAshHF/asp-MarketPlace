@@ -1,0 +1,14 @@
+.loginForm{
+    margin: 50px;
+
+    max-width: 400px;
+
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    box-shadow: 0px 0px 5px 0px;
+    border-radius: 15px;
+}
