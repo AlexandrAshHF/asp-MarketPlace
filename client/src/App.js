@@ -4,7 +4,7 @@ import LoginForm from './components/User/Login/LoginForm';
 function App() {
   return (
     <div className="App">
-      <LoginForm/>
+      <LoginForm errorMessege={"error"}/>
     </div>
   );
 }

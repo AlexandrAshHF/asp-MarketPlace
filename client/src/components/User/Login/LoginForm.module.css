@@ -7,8 +7,39 @@
     flex-flow: column;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 20px;
+    padding: 15px;
 
     box-shadow: 0px 0px 5px 0px;
     border-radius: 15px;
+}
+
+.headForm{
+    font-size: xx-large;
+    margin: 10px;
+}
+
+.errorMessege{
+    font-style: italic;
+    font-size: 12px;
+    text-align: center;
+    color: red;
+}
+
+.submitBlock{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.toRegisterText{
+    font-size: small;
+    color: gray;
+    text-decoration: none;
+}
+
+.toRegisterText:hover{
+    text-decoration:underline;
 }
