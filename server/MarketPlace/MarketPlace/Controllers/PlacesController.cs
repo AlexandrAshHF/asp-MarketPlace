@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MarketPlace.API.Contracts.PlaceDTO;
+using MarketPlace.Core.Interfaces.DataIntefaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MarketPlace.API.Controllers
@@ -8,29 +10,52 @@ namespace MarketPlace.API.Controllers
     [ApiController]
     public class PlacesController : ControllerBase
     {
+        private IPlacesService _placesService;
+        public PlacesController(IPlacesService placesService)
+        {
+            _placesService = placesService;
+        } 
+
         [AllowAnonymous]
         [HttpGet("PlacesList")]
-        public async Task<IActionResult> PlacesList()
+        public IActionResult PlacesList()
         {
-            return Ok();
+            var response = _placesService.GetPlaces();
+            return Ok(response);
         }
 
         [HttpPut("AddPlace")]
-        public async Task<IActionResult> AddPlace()
+        public async Task<IActionResult> AddPlace(PlaceRequestDTO requestDTO)
         {
-            return Ok();
+            var response = await _placesService.AddPlace(Guid.NewGuid(), requestDTO.City, requestDTO.Street);
+
+            if (response.Item1 == Guid.Empty)
+                return BadRequest(response.Item2);
+
+            return Ok(response.Item1);
         }
 
         [HttpPut("UpdatePlace")]
-        public async Task<IActionResult> UpdatePlace()
+        public async Task<IActionResult> UpdatePlace(PlaceRequestDTO requestDTO)
         {
-            return Ok();
+            var id = requestDTO.Id ?? Guid.Empty;
+
+            if (id == Guid.Empty)
+                return BadRequest($"Request place id cannot be null");
+
+            var response = await _placesService.UpdatePlace(id, requestDTO.City, requestDTO.Street);
+
+            if(response.Item1 == Guid.Empty)
+                return BadRequest(response.Item2);
+
+            return Ok(response.Item1);
         }
 
         [HttpDelete("DeletePlace")]
-        public async Task<IActionResult> DeletePlace()
+        public async Task<IActionResult> DeletePlace(Guid id)
         {
-            return Ok();
+            var response = await _placesService.DeletePlace(id);
+            return Ok(response);
         }
     }
 }
