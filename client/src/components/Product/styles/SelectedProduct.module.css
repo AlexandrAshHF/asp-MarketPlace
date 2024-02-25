@@ -1,0 +1,19 @@
+.productBlock{
+    align-items: stretch;
+    padding: 30px 5%;
+
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.infoBlock{
+    display: flex;
+    align-items: stretch;
+
+    height: 100%;
+    width: 100%;
+
+    gap: 20px;
+
+    box-sizing: border-box;
+}

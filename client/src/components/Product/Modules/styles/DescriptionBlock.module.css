@@ -1,0 +1,29 @@
+.descBlock{
+    flex: 50%;
+    display: flex;
+    flex-direction: column;
+
+    text-align:center;
+    overflow-wrap: break-word;
+
+    width: 50%;
+    height: 100%;
+}
+
+.sellerName{
+    font-size: large;
+    font-style: italic;
+
+    margin: 20px 0;
+}
+
+.titleBlock{
+    align-self: center;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    margin: 3%;
+
+    font-size: 22.5px;
+    font-weight: bold;
+}
