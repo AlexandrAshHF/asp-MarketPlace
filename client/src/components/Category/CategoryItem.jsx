@@ -1,10 +1,11 @@
 import React from "react";
+import classes from './styles/CategoryItem.module.css'
 
-function CategoryItem() {
+function CategoryItem({category, ...props}) {
     return(
-        <div>
-            
-        </div>
+        <button {...props} key={category.Id} className={classes.categoryItem}>
+            <label>{category.Title}</label>
+        </button>
     );
 }
 

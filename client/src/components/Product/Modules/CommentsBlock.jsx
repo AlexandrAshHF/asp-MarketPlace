@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./styles/CommentsBlock.module.css"
 
-function CommentsBlock({comments}, ...params) {
+function CommentsBlock({comments, ...params}) {
     return(
         <div {...params} className={classes.commentsBlock}>
             <label className={classes.title}>Отзывы</label>

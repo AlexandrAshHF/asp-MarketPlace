@@ -3,12 +3,13 @@ import classes from "./styles/AuthForm.module.css"
 import AuthButton from '../../UI/Buttons/Auth/AuthButton'
 import AuthInput from '../../UI/Inputs/Auth/AuthInput';
 
-function RegistrationForm({errorMessege}) {
+function RegistrationForm() {
   
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPass] = useState('');
+  const [errorMessege, setError] = useState('');
 
   return (
     <form className={classes.loginForm}>
@@ -16,10 +17,13 @@ function RegistrationForm({errorMessege}) {
 
       <AuthInput type='email' placeholder='Email'
       onChange={ e => setEmail(e.target.value) }/>
+
       <AuthInput type='text' placeholder='Username' maxLength="24"
       onChange={ e => setUsername(e.target.value) }/>
+
       <AuthInput type='password' placeholder='Password' maxLength="24"
       onChange={ e => setPassword(e.target.value) }/>
+
       <AuthInput type='password' placeholder='Repeat password' maxLength="24"
       onChange={ e => setRepeatPass(e.target.value) }/>
 

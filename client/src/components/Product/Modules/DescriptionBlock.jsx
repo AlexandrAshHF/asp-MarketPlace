@@ -1,7 +1,7 @@
 import React from "react";
 import classes from './styles/DescriptionBlock.module.css'
 
-function DescriptionBlock(params) {
+function DescriptionBlock({params}) {
     return(
         <div className={classes.descBlock}>
             <label className={classes.sellerName}>{params.SellerName}</label>

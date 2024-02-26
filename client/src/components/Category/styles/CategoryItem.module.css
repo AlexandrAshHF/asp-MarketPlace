@@ -1,0 +1,16 @@
+.categoryItem{
+    border: 1px solid black;
+    padding: 2.5px;
+
+    justify-content: center;
+    text-align: center;
+
+    background: none;
+    margin: 0;
+    outline: none;
+}
+
+.categoryItem:hover{
+    cursor: pointer;
+    border: 2px solid black;
+}

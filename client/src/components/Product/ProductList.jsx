@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import ProductItem from './ProductItem'
 import classes from './styles/ProductList.module.css'
 
-function ProductList({list}, ...params){
+function ProductList(){
     var basketKey = 'BasketKey';
 
     const [basketItems, ChangeBasket] = useState(localStorage.getItem(basketKey) != null 
     ? localStorage.getItem(basketKey).split(',')
     : []);
+
+    const [list, setList] = useState([]);
 
     const [clickedItems, setClickedItems] = useState([]);
 
@@ -30,7 +32,7 @@ function ProductList({list}, ...params){
     }
 
     return(
-        <div {...params} className={classes.productList}>
+        <div className={classes.productList}>
             {list.map((product) => (
                 <ProductItem item={product} basketClick={EntryItem}
                  key={product.Id} clicked={clickedItems.includes(product.Id)}/>

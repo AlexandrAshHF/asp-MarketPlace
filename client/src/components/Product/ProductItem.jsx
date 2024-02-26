@@ -2,7 +2,7 @@ import React from 'react';
 import classes from "./styles/ProductItem.module.css";
 import BasketButton from "../../UI/Buttons/Product/BasketButton"
 
-function ProductItem({item, basketClick, clicked}, ...props){
+function ProductItem({item, basketClick, clicked, ...props}){
     const buttonStyle = clicked
      ? {backgroundColor: 'rgba(128, 0, 0, 0.2)'}
      : {backgroundColor:'rgba(0, 128, 0, 0.1)'};

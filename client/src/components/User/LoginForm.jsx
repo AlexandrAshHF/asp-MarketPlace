@@ -3,10 +3,11 @@ import classes from "./styles/AuthForm.module.css"
 import AuthButton from '../../UI/Buttons/Auth/AuthButton'
 import AuthInput from '../../UI/Inputs/Auth/AuthInput';
 
-function LoginForm({errorMessege}) {
+function LoginForm() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessege, setError] = useState('');
 
   return (
     <form className={classes.loginForm}>

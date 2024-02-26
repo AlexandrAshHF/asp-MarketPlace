@@ -1,9 +1,9 @@
 import React from "react";
 import classes from './AuthInput.module.css';
 
-const AuthInput = (children, ...props) => {
+const AuthInput = ({props}) => {
     return(
-        <input {...props} className={classes.AuthInput}> {children} </input>
+        <input {...props} className={classes.AuthInput}/>
     );
 }
 
