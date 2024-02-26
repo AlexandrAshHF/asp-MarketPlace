@@ -5,6 +5,7 @@ import ProductList from './components/Product/ProductList';
 import SelectedProduct from './components/Product/SelectedProduct';
 
 const Links = [
+    {path:'/', component: ProductList, exact: true},
     {path:'/Login', component: LoginForm, exact: true},
     {path:'/Registration', component: RegistrationForm, exact: true},
     {path:'/Profile', component: Profile, exact: true},
