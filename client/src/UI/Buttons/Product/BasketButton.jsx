@@ -1,9 +1,10 @@
 import React from "react";
+import classes from './BasketButton.module.css'
 
-const BasketButton = () =>{
+const BasketButton = (props) => {
     return(
-        <button>
-
+        <button {...props} className={classes.basketButton}>
+            
         </button>
     );
 }
