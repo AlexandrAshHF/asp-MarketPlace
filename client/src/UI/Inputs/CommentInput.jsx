@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import classes from './CommentInput.module.css'
+import classes from './styles/CommentInput.module.css'
 
 const CommentInput = ({props}) => {
     const area = useRef();

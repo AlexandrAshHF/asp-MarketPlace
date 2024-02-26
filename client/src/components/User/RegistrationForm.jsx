@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import classes from "./styles/AuthForm.module.css"
 import AuthButton from '../../UI/Buttons/Auth/AuthButton'
-import AuthInput from '../../UI/Inputs/Auth/AuthInput';
+import AuthInput from '../../UI/Inputs/AuthInput';
 
 function RegistrationForm() {
   

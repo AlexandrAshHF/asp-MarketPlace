@@ -3,7 +3,7 @@ import classes from "./styles/SelectedProduct.module.css"
 import ImageModule from "./Modules/ImageModule";
 import DescriptionBlock from "./Modules/DescriptionBlock";
 import CommentsBlock from "./Modules/CommentsBlock";
-import CommentInput from '../../UI/Inputs/Review/CommentInput';
+import CommentInput from '../../UI/Inputs/CommentInput';
 
 function SelectedProduct() {
     const [comment, setComment] = useState("");
