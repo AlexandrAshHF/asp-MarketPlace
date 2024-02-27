@@ -1,4 +1,7 @@
 .basketButton{
+    justify-content: center;
+    align-items: center;
+
     height: 15%;
     justify-self:end;
 
@@ -14,4 +17,9 @@
 
 .basketButton:active, .basketButton:focus {
     outline: none !important;
+}
+
+.basketButton img{
+    width: 25%;
+    height: 50%;
 }

@@ -1,17 +1,18 @@
 import React from 'react';
 import AppRouter from './AppRouter';
+import classes from './App.module.css'
 import { BrowserRouter } from 'react-router-dom';
 import DefaultNavPanel from './components/Common/NavPanels/DefaultNavPanel'
 
 function App() {
 
   return (
-    <DefaultNavPanel/>
-    // <BrowserRouter>
-    //   <div className='App'>
-    //     <AppRouter/>
-    //   </div>
-    // </BrowserRouter>
+    <BrowserRouter>
+      <DefaultNavPanel/>
+      <div className={classes.App}>
+        <AppRouter/>
+      </div>
+    </BrowserRouter>
   );
 }
 
