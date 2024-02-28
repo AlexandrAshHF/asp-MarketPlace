@@ -1,6 +1,8 @@
 ﻿using MarketPlace.API.Contracts.AuthDTO;
 using MarketPlace.API.Contracts.UserDTO;
 using MarketPlace.Core.Interfaces.Auth;
+using MarketPlace.Core.Interfaces.DataIntefaces;
+using MarketPlace.Core.Interfaces.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -13,9 +15,11 @@ namespace MarketPlace.API.Controllers
     public class AccountController : ControllerBase
     {
         private IUsersService _userService;
-        public AccountController(IUsersService userService)
+        private IOrdersService _ordersService;
+        public AccountController(IUsersService userService, IOrdersService ordersService, ISellerRepository sellerRepository)
         {
             _userService = userService;
+            _ordersService = ordersService;
         }
 
         [Authorize]
@@ -25,17 +29,20 @@ namespace MarketPlace.API.Controllers
             var userClaims = User.Identity as ClaimsIdentity;
             var userId = userClaims.FindFirst("userId").Value;
 
-            if (userId == null)
+            if (userId.IsNullOrEmpty())
                 return BadRequest();
 
             var model = await _userService.GetUserById(new Guid(userId));
+            var orders = await _ordersService.GetOrdersByUserIdAsync(model.Id);
+
             var response = new ProfileResponseDTO
             {
                 Id = model.Id,
                 Email = model.Email,
-                EmailConfirm = model.EmailConfirm,
                 Username = model.Username,
-                SellerId = model.SellerId,
+                SellerId = model.SellerId.IsNullOrEmpty() ? null : new Guid(model.SellerId),
+                Orders = orders.Select(x => new OrderModule(x.Id, string.Empty,
+                x.Products.Aggregate(0M, (total, second) => total + second.Price))).ToList(),
             };
 
             return Ok(response);
@@ -66,17 +73,10 @@ namespace MarketPlace.API.Controllers
         }
 
         [Authorize]
-        [HttpPost("Logout")]
-        public IActionResult Logout()
-        {
-            var result = Response.Headers.Remove("Authorization");
-            return result ? Ok() : BadRequest();
-        }
-
-        [Authorize]
         [HttpPost("RegistrationSeller")]
-        public async Task<IActionResult> RegistrationSeller()
+        public async Task<IActionResult> RegistrationSeller(string phoneNumber)
         {
+            
             return Ok();
         }
     }
