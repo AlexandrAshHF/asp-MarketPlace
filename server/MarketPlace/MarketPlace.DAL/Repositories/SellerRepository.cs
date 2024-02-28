@@ -29,6 +29,18 @@ namespace MarketPlace.DAL.Repositories
 
             return model;
         }
+
+        public async Task<SellerModel> GetSellerByProductId(Guid productId)
+        {
+            var entity = await _context.Sellers.AsNoTracking()
+                .Where(x => x.Products.Contains(new ProductEntity { Id = productId }))
+                .Include(x => x.User).FirstOrDefaultAsync();
+
+            var model = SellerModel.CreateSeller(entity.Id, entity.PhoneNumber, 
+                UserModel.CreateUser(entity.UserId, entity.User.Username, entity.User.Email, entity.User.EmailConfirm, "", "", "").Item1);
+
+            return model.Item1;
+        }
         public async Task<Guid> AddSellerAsync(SellerModel seller)
         {
             var entity = new SellerEntity

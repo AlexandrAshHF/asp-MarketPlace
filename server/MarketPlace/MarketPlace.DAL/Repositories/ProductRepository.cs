@@ -113,10 +113,10 @@ namespace MarketPlace.DAL.Repositories
         {
             List<ProductModel> models = new List<ProductModel>();
 
-            var entities = _context.Products.ToList();
+            var entities = _context.Products;
 
             if (entities.IsNullOrEmpty())
-                return null;
+                return models;
 
             foreach (var item in entities)
                 models.Add(ProductModel.CreateProduct(item.Id, item.Title, item.TypeName,

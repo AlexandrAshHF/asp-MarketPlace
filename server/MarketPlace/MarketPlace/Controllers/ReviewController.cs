@@ -25,7 +25,7 @@ namespace MarketPlace.API.Controllers
         [HttpGet("ReviewList")]
         public async Task<IActionResult> ReviewList(Guid productId)
         {
-            var reviews = _reviewsService.GetReviewsByProductIdAsync(productId);
+            var reviews = await _reviewsService.GetReviewsByProductIdAsync(productId);
 
             return Ok(reviews);
         }

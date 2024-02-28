@@ -1,6 +1,7 @@
 ﻿using MarketPlace.API.Contracts.ProductDTO.Requests;
 using MarketPlace.API.Contracts.ProductDTO.Responses;
 using MarketPlace.Core.Interfaces.DataIntefaces;
+using MarketPlace.Core.Interfaces.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -14,9 +15,11 @@ namespace MarketPlace.API.Controllers
     public class ProductController : ControllerBase
     {
         private IProductsService _productsService;
-        public ProductController(IProductsService productsService)
+        private ISellerRepository _sellerRepository;
+        public ProductController(IProductsService productsService, ISellerRepository sellerRepository)
         {
             _productsService = productsService;
+            _sellerRepository = sellerRepository;
         }
 
         [AllowAnonymous]
@@ -24,13 +27,13 @@ namespace MarketPlace.API.Controllers
         public IActionResult ProductsList()
         {
             var products = _productsService.GetAllProducts()
-                .Select(x => new ProductResponseDTO
+                .Select(item => new ProductResponseDTO
                 {
-                    Id = x.Id,
-                    Title = x.Title,
-                    TypeName = x.TypeName,
-                    ImageLink = x.ImageLinks[0] ?? string.Empty,
-                    Price = x.Price,
+                    Id = item.Id,
+                    Title = item.Title,
+                    TypeName = item.TypeName ?? string.Empty,
+                    ImageLink = item.ImageLinks.FirstOrDefault() ?? string.Empty,
+                    Price = item.Price,
                 });
 
             return Ok(products);
@@ -45,14 +48,18 @@ namespace MarketPlace.API.Controllers
             if (product == null)
                 return BadRequest(id);
 
+            var seller = await _sellerRepository.GetSellerByProductId(id);
+
             var response = new SelectedProductResponseDTO
             {
                 Id = product.Id,
+                SellerId = seller.Id,
                 Title = product.Title,
                 Description = product.Description,
                 TypeName = product.TypeName ?? string.Empty,
                 ImageLinks = product.ImageLinks ?? new List<string>(),
                 Price = product.Price,
+                SellerName = seller.User.Username,
             };
 
             return Ok(response);

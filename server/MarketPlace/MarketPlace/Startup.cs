@@ -46,6 +46,7 @@ namespace MarketPlace.API
             #endregion  
 
             services.AddControllers();
+            services.AddCors();
             services.AddSwaggerGen(o =>
             {
                 o.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -108,23 +109,29 @@ namespace MarketPlace.API
                    {
                        c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
                    });
-
-                app.UseHttpsRedirection();
-                app.UseRouting();
-
-                app.UseAuthentication();
-                app.UseAuthorization();
-
-                app.UseEndpoints(endpoints =>
-                {
-                    endpoints.MapControllerRoute(
-                        name: "default",
-                        pattern: "{controller}/{action}/{id?}");
-                    endpoints.MapControllerRoute(
-                        name: "CatchAll",
-                        pattern: "{controller}/{action}/{*data}");
-                });
             }
+
+            app.UseHttpsRedirection();
+            app.UseRouting();
+
+            app.UseCors(o => {
+                o.AllowAnyOrigin();
+                o.AllowAnyHeader();
+                o.AllowAnyMethod();
+            });
+
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller}/{action}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "CatchAll",
+                    pattern: "{controller}/{action}/{*data}");
+            });
         }
     }
 }

@@ -3,10 +3,12 @@
     public class SelectedProductResponseDTO
     {
         public Guid Id { get; set; }
+        public Guid SellerId { get; set; }
         public string Title { get; set; }
         public string? TypeName { get; set; }
         public string Description { get; set; }
         public List<string> ImageLinks { get; set; }
         public decimal Price { get; set; }
+        public string SellerName { get; set; }
     }
 }

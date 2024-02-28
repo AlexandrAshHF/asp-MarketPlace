@@ -6,6 +6,7 @@ namespace MarketPlace.Core.Interfaces.Repositories
     {
         Task<Guid> AddSellerAsync(SellerModel seller);
         Task<SellerModel?> GetSellerByIdAsync(Guid id);
+        Task<SellerModel> GetSellerByProductId(Guid productId);
         Task<Guid> RemoveSellerAsync(Guid sellerId);
     }
 }

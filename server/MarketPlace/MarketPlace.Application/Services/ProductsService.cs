@@ -39,9 +39,6 @@ namespace MarketPlace.Application.Services
         {
             var products = _productRepository.GetAllProducts();
 
-            if (products.IsNullOrEmpty())
-                return new List<ProductModel>();
-
             return products;
         }
         public async Task<(Guid, string)> UpdateProductAsync(Guid id, string title, string? typeName,

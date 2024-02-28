@@ -40,5 +40,14 @@ namespace MarketPlace.UnitTests.ServicesTest
                 Guid.Empty};
         }
 
+        [Fact]
+        public async Task GetAllTest_Success()
+        {
+            var products = _productsService.GetAllProducts();
+            Guid[] ids = products.Select(x => x.Id).ToArray();
+            Guid[] expected = [ContextFactory.ProductAId, ContextFactory.ProductBId];
+
+            Assert.Equal(expected, ids);
+        }
     }
 }

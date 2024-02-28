@@ -16,7 +16,9 @@ namespace MarketPlace.DAL.Repositories
         {
             List<ReviewModel> models = new List<ReviewModel>();
 
-            var product = await _context.Products.Include(x => x.Reviews).FirstOrDefaultAsync();
+            var product = await _context.Products
+                .Include(x => x.Reviews)
+                .FirstOrDefaultAsync(x => x.Id == productId);
 
             if (product == null)
                 return models;

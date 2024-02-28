@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import classes from "./styles/AuthForm.module.css"
 import AuthButton from '../../UI/Buttons/Auth/AuthButton'
 import AuthInput from '../../UI/Inputs/AuthInput';
@@ -8,6 +9,37 @@ function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessege, setError] = useState('');
+
+  const navigate = useNavigate();
+  
+
+  async function authButtonClick(e){
+    e.preventDefault();
+    console.log(email + ' ' + password);
+    console.log(JSON.stringify({email, password}));
+
+    try{
+      let response = await fetch('https://localhost:7004/Accout/Login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({email, password}),
+      });
+  
+      if(response.ok){
+        navigate('Products/ProductList');
+      }
+      else{
+        const errorMessege = await response.json();
+        setError(errorMessege);
+        console.log(errorMessege);
+      }
+    }
+    catch(error){
+      console.log(error);
+    }
+  }
 
   return (
     <form className={classes.loginForm}>
@@ -22,7 +54,7 @@ function LoginForm() {
       <label className={classes.errorMessege}>{errorMessege}</label>
 
       <div className={classes.submitBlock}>
-        <AuthButton>LogIn</AuthButton>
+        <AuthButton onClick={authButtonClick}>LogIn</AuthButton>
         <a href='https://github.com/AlexandrAshHF/asp-MarketPlace.git' className={classes.toRegisterText}>Don't have an account?</a>
       </div>
     </form>
