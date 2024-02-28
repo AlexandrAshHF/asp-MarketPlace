@@ -19,7 +19,7 @@ function LoginForm() {
     console.log(JSON.stringify({email, password}));
 
     try{
-      let response = await fetch('https://localhost:7004/Accout/Login', {
+      let response = await fetch('https://localhost:7004/Account/Login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
