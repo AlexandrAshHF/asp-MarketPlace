@@ -22,14 +22,16 @@ function LoginForm() {
       let response = await fetch('https://localhost:7004/Account/Login', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({email, password}),
       });
   
       if(response.ok){
-        navigate('Products/ProductList');
+        localStorage.setItem("Authorization", `Bearer ${response.json()}`)
+        navigate('Products/ProductList', {replace: true});
       }
+
       else{
         const errorMessege = await response.json();
         setError(errorMessege);

@@ -1,9 +1,10 @@
 .productList{
     width: 100%;
+    box-sizing: border-box;
 
     display: flex;
     flex-wrap: wrap;
     gap: 20px 74px;
 
-    padding: 40px 20px;
+    padding: 0px 20px;
 }

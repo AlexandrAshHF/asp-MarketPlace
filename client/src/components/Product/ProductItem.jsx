@@ -8,19 +8,19 @@ function ProductItem({item, basketClick, clicked, ...props}){
      : {backgroundColor:'rgba(0, 128, 0, 0.1)'};
 
      const iconButton = clicked 
-     ? '../../../../public/images/redBasket.png'
-     : '../../../../public/images/redBasket.png';
+     ? '/images/redBasket.png'
+     : '/images/greenBasket.png';
 
     return(
         <div className={classes.productBlock} {...props}>
             <img className={classes.productImage} alt='ProductImg' src={item.ImageLink}/>
             
             <div className={classes.productInfo}>
-                <label>{item.Title}</label>
-                <label>{item.TypeName}</label>
-                <label>Price: {item.Price}</label>
+                <label>{item.title}</label>
+                <label>{item.typeName}</label>
+                <label>Price: {item.price}</label>
             </div>
-            <BasketButton imgLink={iconButton} onClick={() => basketClick(item.Id)} style={buttonStyle}/>
+            <BasketButton imgLink={iconButton} onClick={() => basketClick(item.id)} style={buttonStyle}/>
         </div>
     );
 }

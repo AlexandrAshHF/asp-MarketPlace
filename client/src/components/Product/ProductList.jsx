@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ProductItem from './ProductItem'
 import classes from './styles/ProductList.module.css'
 
@@ -10,8 +10,26 @@ function ProductList(){
     : []);
 
     const [list, setList] = useState([]);
-
     const [clickedItems, setClickedItems] = useState([]);
+
+    async function fecthProducts() {
+        var response = await fetch('https://localhost:7004/Product/ProductsList', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+
+        if(response.ok){
+            let data = await response.json();
+            console.log(data);
+            setList(data);
+        }
+    }
+
+    useEffect(() => {
+        fecthProducts();
+    }, []);
 
     function EntryItem(id) {
         console.log(id);
@@ -35,7 +53,7 @@ function ProductList(){
         <div className={classes.productList}>
             {list.map((product) => (
                 <ProductItem item={product} basketClick={EntryItem}
-                 key={product.Id} clicked={clickedItems.includes(product.Id)}/>
+                 key={product.id} clicked={clickedItems.includes(product.Id)}/>
             ))}
         </div>
     );
