@@ -3,7 +3,6 @@
 
     display: flex;
     flex-wrap: nowrap;
-    position: fixed;
     z-index: 10;
 
     justify-self: start;

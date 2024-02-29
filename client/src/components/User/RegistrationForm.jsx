@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import classes from "./styles/AuthForm.module.css"
 import AuthButton from '../../UI/Buttons/Auth/AuthButton'
 import AuthInput from '../../UI/Inputs/AuthInput';
+import { useNavigate } from 'react-router-dom';
 
 function RegistrationForm() {
   
@@ -10,6 +11,34 @@ function RegistrationForm() {
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPass] = useState('');
   const [errorMessege, setError] = useState('');
+  const navigate = useNavigate();
+
+  async function fetchRegister() {
+    let response = await fetch('url', 
+    {
+      method: 'POST',
+      headers:
+      {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({email, username, password}),
+    });
+
+    if(response.ok)
+      navigate('/Account/Login', {replace: true});
+
+    else {
+      let data = await response.json();
+      setError(data);
+    }
+  }
+
+  function authClick() {
+    if(password != repeatPassword)
+      setError('Passwords should be equals')
+    else
+      fetchRegister();
+  }
 
   return (
     <form className={classes.loginForm}>
@@ -30,7 +59,7 @@ function RegistrationForm() {
       <label className={classes.errorMessege}>{errorMessege}</label>
 
       <div className={classes.submitBlock}>
-        <AuthButton>SignUp</AuthButton>
+        <AuthButton onClick={() => authClick()}>SignUp</AuthButton>
         <a href='https://github.com/AlexandrAshHF/asp-MarketPlace.git' 
         className={classes.toRegisterText}>Already have an account?</a>
       </div>

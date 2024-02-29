@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ProductItem from './ProductItem'
 import classes from './styles/ProductList.module.css'
 
-function ProductList(){
+function ProductList({products = null}){
     var basketKey = 'BasketKey';
 
     const [basketItems, ChangeBasket] = useState(localStorage.getItem(basketKey) != null 
@@ -28,7 +28,13 @@ function ProductList(){
     }
 
     useEffect(() => {
-        fecthProducts();
+        if(products == null)
+            fecthProducts();
+
+        else {
+            setList(products)
+            EntryItem('');
+        }
     }, []);
 
     function EntryItem(id) {
