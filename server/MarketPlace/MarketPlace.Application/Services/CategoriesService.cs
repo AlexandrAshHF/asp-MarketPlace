@@ -14,7 +14,7 @@ namespace MarketPlace.Application.Services
         }
         public async Task<(Guid, string)> AddCategoryAsync(Guid id, string title, List<string> characteristics, Guid parrentId)
         {
-            var model = CategoryModel.CreateCategory(id, title, characteristics);
+            var model = CategoryModel.CreateCategory(id, title, characteristics, parrentId);
 
             if (!model.Item2.IsNullOrEmpty())
                 return (id, model.Item2);
@@ -40,7 +40,7 @@ namespace MarketPlace.Application.Services
         }
         public async Task<(Guid, string)> UpdateCategoryAsync(Guid id, string title, List<string> characteristics, Guid parrentId)
         {
-            var model = CategoryModel.CreateCategory(id, title, characteristics);
+            var model = CategoryModel.CreateCategory(id, title, characteristics, parrentId);
 
             if (!model.Item2.IsNullOrEmpty())
                 return (id, model.Item2);
@@ -50,6 +50,10 @@ namespace MarketPlace.Application.Services
         public List<CategoryModel> GetParrentUpCategories()
         {
             return _categoryRepository.GetParrentUpCategories();
+        }
+        public List<CategoryModel>GetAllCategories()
+        {
+            return _categoryRepository.GetAllCategories();
         }
     }
 }

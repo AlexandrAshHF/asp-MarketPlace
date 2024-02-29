@@ -18,7 +18,7 @@ namespace MarketPlace.DAL.Repositories
             var entities = _context.Categories.Where(x => x.ParrentCategory == null);
 
             foreach (var item in entities)
-                models.Add(CategoryModel.CreateCategory(item.Id, item.Title, item.Characteristics).Item1);
+                models.Add(CategoryModel.CreateCategory(item.Id, item.Title, item.Characteristics, item.ParrentId).Item1);
 
             return models;
         }
@@ -29,7 +29,7 @@ namespace MarketPlace.DAL.Repositories
             if (entity == null)
                 return null;
 
-            var model = CategoryModel.CreateCategory(id, entity.Title, entity.Characteristics).Item1;
+            var model = CategoryModel.CreateCategory(id, entity.Title, entity.Characteristics, entity.ParrentId).Item1;
 
             return model;
         }
@@ -44,7 +44,7 @@ namespace MarketPlace.DAL.Repositories
                 return null;
 
             foreach (var item in entities.SubCategories)
-                models.Add(CategoryModel.CreateCategory(item.Id, item.Title, item.Characteristics).Item1);
+                models.Add(CategoryModel.CreateCategory(item.Id, item.Title, item.Characteristics, item.ParrentId).Item1);
 
             return models;
         }
@@ -88,6 +88,14 @@ namespace MarketPlace.DAL.Repositories
             await _context.SaveChangesAsync();
 
             return id;
+        }
+        public List<CategoryModel> GetAllCategories()
+        {
+            List<CategoryModel> models = _context.Categories
+                .Select( x => CategoryModel
+                .CreateCategory(x.Id, x.Title, x.Characteristics, x.ParrentId).Item1).ToList();
+
+            return models;
         }
     }
 }

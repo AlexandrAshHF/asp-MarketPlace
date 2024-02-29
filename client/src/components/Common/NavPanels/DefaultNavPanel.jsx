@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchInput from "../../../UI/Inputs/SearchInput";
 import classes from './styles/DefaultNav.module.css'
 import CategoryList from "../../Category/CategoryList";
@@ -9,6 +9,28 @@ function DefaultNavPanel({params}) {
     const [isVisable, setVisable] = useState(false);
     const [categories, setCategories] = useState([]);
     const navigate = useNavigate();
+
+    async function fetchCategories() {
+        let response = await fetch('https://localhost:7004/Category/CategoryList', {
+            method: 'GET',
+            headers: 
+            {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        let data;
+        if(response.ok)
+            data = await response.json();   
+        else
+            console.log('BzzzzBZZZzzz');
+
+        setCategories(data);
+    }
+
+    useEffect(() => {
+        fetchCategories();
+    }, [])
 
     const handleEnterDown = (event) => {
         if(event.key === 'Enter')
@@ -22,7 +44,8 @@ function DefaultNavPanel({params}) {
     return(
         <div className={classes.panelBlock}>
 
-            <button className={classes.categoryButton} onClick={() => setVisable(!isVisable)}>
+            <button className={classes.categoryButton}
+             onClick={() => setVisable(!isVisable)} categories={categories}>
                 <img alt="openCategory" src='/images/menu.png' className={classes.innerImg}/>
             </button>
 

@@ -20,16 +20,9 @@ namespace MarketPlace.API.Controllers
 
         [AllowAnonymous]
         [HttpGet("CategoryList")]
-        public async Task<IActionResult> CategoryList(Guid? parrentId)
+        public IActionResult CategoryList()
         {
-            List<CategoryModel> models = new List<CategoryModel>();
-
-            if (parrentId == null)
-                models = _categoryService.GetParrentUpCategories();
-
-            else
-                models = await _categoryService.GetChildrenByIdAsync(parrentId);
-
+            List<CategoryModel> models = _categoryService.GetAllCategories();
             return Ok(models);
         }
 

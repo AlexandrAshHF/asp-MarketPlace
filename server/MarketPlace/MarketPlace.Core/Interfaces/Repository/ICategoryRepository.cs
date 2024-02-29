@@ -10,5 +10,6 @@ namespace MarketPlace.Core.Interfaces.Repositories
         Task<List<CategoryModel>?> GetChildrenByIdAsync(Guid? id);
         Task<Guid> UpdateCategoryAsync(CategoryModel category, Guid parrentId);
         List<CategoryModel> GetParrentUpCategories();
+        List<CategoryModel> GetAllCategories();
     }
 }

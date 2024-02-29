@@ -6,6 +6,7 @@ namespace MarketPlace.Core.Interfaces.DataIntefaces
     {
         Task<(Guid, string)> AddCategoryAsync(Guid id, string title, List<string> characteristics, Guid parrentId);
         Task<Guid> DeleteCategoryAsync(Guid id);
+        List<CategoryModel> GetAllCategories();
         Task<CategoryModel?> GetCategoryByIdAsync(Guid id);
         Task<List<CategoryModel>> GetChildrenByIdAsync(Guid? id);
         List<CategoryModel> GetParrentUpCategories();
