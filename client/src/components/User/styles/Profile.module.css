@@ -1,0 +1,27 @@
+.mainBlock{
+    display: flex;
+    flex-direction: column;
+}
+
+.infoBlock{
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonsBlock{
+
+}
+
+.buttonBlock button{
+
+}
+
+.orderBlock{
+    display: flex;
+    flex-direction: column;
+}
+
+.orderItem{
+    display: flex;
+    flex-wrap: nowrap;
+}

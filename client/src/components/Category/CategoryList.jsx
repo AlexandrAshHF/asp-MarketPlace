@@ -8,7 +8,7 @@ function CategoryList({isVisable, categories, ...props}) {
     const [current, setCurrent] = useState(categories);
 
     useEffect(() => {
-        setCurrent(duplicate.filter(x => x.id === selected.id));
+        setCurrent(duplicate.filter(x => x.id == selected.id));
     }, [selected])
 
     return(
