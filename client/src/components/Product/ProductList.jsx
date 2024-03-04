@@ -28,6 +28,9 @@ function ProductList({isCatalog = true}){
     }
 
     async function fetchBasket() {
+        if(localStorage.getItem(basketKey) == null)
+            return;
+
         let IDs = localStorage.getItem(basketKey).split(',');
         var response = await fetch('https://localhost:7004/Product/ProductsRangeById', {
             method: 'POST',

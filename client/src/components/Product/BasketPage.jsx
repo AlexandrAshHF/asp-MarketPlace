@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import classes from './styles/BasketPage.module.css';
 import ProductList from './ProductList';
-import Select from "react-select/dist/declarations/src/Select";
+import Select from "react-select";
 
 function BasketPage() {
     const [places, setPlaces] = useState([]);
@@ -19,17 +19,17 @@ function BasketPage() {
 
         if(response.ok){
             let data = await response.json();
-            let places = [ { value: "", lable: `Choose place` } ];
+            let place = [ { value: "", lable: `Choose place` } ];
             data.forEach(element => {
-                places.push({ value: element.id, lable: `${element.City}, ${element.Address}` });
+                place.push({ value: element.id, lable: `${element.city}, ${element.address}` });
             });
+            console.log(place);
             setPlaces(place);
         }
     }
 
     useEffect(() => {
         fetchPlace();
-        setProducts(localStorage.getItem('BasketKey').split(','));
     }, [])
 
     return(
