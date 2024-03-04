@@ -6,7 +6,6 @@ import Select from "react-select/dist/declarations/src/Select";
 function BasketPage() {
     const [places, setPlaces] = useState([]);
     const [selectedPlace, setSelectedPlace] = useState(null);
-    const [productsList, setProducts] = useState([]);
 
     async function fetchPlace()
     {
@@ -16,17 +15,27 @@ function BasketPage() {
             headers: {
                 'Content-Type': 'application/json',
             }
-        })
+        });
+
+        if(response.ok){
+            let data = await response.json();
+            let places = [ { value: "", lable: `Choose place` } ];
+            data.forEach(element => {
+                places.push({ value: element.id, lable: `${element.City}, ${element.Address}` });
+            });
+            setPlaces(place);
+        }
     }
 
     useEffect(() => {
-
+        fetchPlace();
+        setProducts(localStorage.getItem('BasketKey').split(','));
     }, [])
 
     return(
         <div className={classes.mainBlock}>
             <Select options={places} isSearchable onChange={(value) => setSelectedPlace(value)}/>
-            <ProductList products={productsList}/>
+            <ProductList isCatalog={false}/>
         </div>
     );
 }

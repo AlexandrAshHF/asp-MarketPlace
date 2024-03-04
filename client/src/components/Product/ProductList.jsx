@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ProductItem from './ProductItem'
 import classes from './styles/ProductList.module.css'
 
-function ProductList({products = null}){
+function ProductList({isCatalog = true}){
     var basketKey = 'BasketKey';
 
     const [basketItems, ChangeBasket] = useState(localStorage.getItem(basketKey) != null 
@@ -28,12 +28,13 @@ function ProductList({products = null}){
     }
 
     async function fetchBasket() {
+        let IDs = localStorage.getItem(basketKey).split(',');
         var response = await fetch('https://localhost:7004/Product/ProductsRangeById', {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({'requestProductsId': products})
+            body: JSON.stringify({'requestProductsId': IDs})
         });
 
         if(response.ok){
@@ -44,7 +45,7 @@ function ProductList({products = null}){
     }
 
     useEffect(() => {
-        if(products == null)
+        if(isCatalog)
             fecthProducts();
 
         else {
