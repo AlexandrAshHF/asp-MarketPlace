@@ -10,6 +10,7 @@ namespace MarketPlace.Core.Interfaces.DataIntefaces
         List<ProductModel> GetAllProducts();
         Task<List<ProductModel>?> GetProductsByCategoryIdAsync(Guid id);
         Task<List<ProductModel>?> GetProductsBySellerIdAsync(Guid sellerId);
+        List<ProductModel> GetRangeProductsById(List<Guid> productsId);
         Task<(Guid, string)> UpdateProductAsync(Guid id, string title, string? typeName, string desc, List<string> imgList, decimal price, Guid CategoryId, Guid SellerId);
     }
 }

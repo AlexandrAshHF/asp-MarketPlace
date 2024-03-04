@@ -37,7 +37,7 @@ function DefaultNavPanel({params}) {
             console.log(searchLine);
     }
 
-    const basketClick = () => navigate('Account/Basket', {replace:true});
+    const basketClick = () => navigate('Orders/Basket', {replace:true});
 
     const profileClick = () => navigate('Account/Profile', {replace:true});
 

@@ -26,15 +26,36 @@ namespace MarketPlace.API.Controllers
         [HttpGet("ProductsList")]
         public IActionResult ProductsList()
         {
-            var products = _productsService.GetAllProducts()
-                .Select(item => new ProductResponseDTO
-                {
-                    Id = item.Id,
-                    Title = item.Title,
-                    TypeName = item.TypeName ?? string.Empty,
-                    ImageLink = item.ImageLinks.FirstOrDefault() ?? string.Empty,
-                    Price = item.Price,
-                });
+            List<ProductResponseDTO> products = new List<ProductResponseDTO>();
+
+            products = _productsService.GetAllProducts()
+            .Select(item => new ProductResponseDTO
+            {
+                Id = item.Id,
+                Title = item.Title,
+                TypeName = item.TypeName ?? string.Empty,
+                ImageLink = item.ImageLinks.FirstOrDefault() ?? string.Empty,
+                Price = item.Price,
+            }).ToList();
+
+            return Ok(products);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("ProductsRangeById")]
+        public IActionResult ProductsRangeById(List<Guid> requestProductsId)
+        {
+            List<ProductResponseDTO> products = new List<ProductResponseDTO>();
+
+            products = _productsService.GetRangeProductsById(requestProductsId)
+              .Select(item => new ProductResponseDTO
+              {
+                  Id = item.Id,
+                  Title = item.Title,
+                  TypeName = item.TypeName ?? string.Empty,
+                  ImageLink = item.ImageLinks.FirstOrDefault() ?? string.Empty,
+                  Price = item.Price,
+              }).ToList();
 
             return Ok(products);
         }

@@ -41,6 +41,13 @@ namespace MarketPlace.Application.Services
 
             return products;
         }
+
+        public List<ProductModel> GetRangeProductsById(List<Guid> productsId)
+        {
+            var products = _productRepository.GetRangeProductsById(productsId);
+
+            return products;
+        }
         public async Task<(Guid, string)> UpdateProductAsync(Guid id, string title, string? typeName,
             string desc, List<string> imgList, decimal price,
             Guid CategoryId, Guid SellerId)

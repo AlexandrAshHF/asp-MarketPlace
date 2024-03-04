@@ -11,5 +11,6 @@ namespace MarketPlace.Core.Interfaces.Repositories
         List<ProductModel>? GetAllProducts();
         Task<Guid> UpdateProductAsync(ProductModel product, Guid CategoryId, Guid SellerId);
         Task<List<ProductModel>?> GetProductsBySellerIdAsync(Guid sellerId);
+        List<ProductModel> GetRangeProductsById(List<Guid> productsId);
     }
 }

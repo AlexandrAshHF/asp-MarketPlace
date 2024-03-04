@@ -27,13 +27,28 @@ function ProductList({products = null}){
         }
     }
 
+    async function fetchBasket() {
+        var response = await fetch('https://localhost:7004/Product/ProductsRangeById', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({'requestProductsId': products})
+        });
+
+        if(response.ok){
+            let data = await response.json();
+            console.log(data);
+            setList(data);
+        }
+    }
+
     useEffect(() => {
         if(products == null)
             fecthProducts();
 
         else {
-            setList(products)
-            EntryItem('');
+            fetchBasket();
         }
     }, []);
 

@@ -28,7 +28,7 @@ function LoginForm() {
       });
   
       if(response.ok){
-        let token = await response.json();
+        let token = await response.text();
         console.log(`Bearer ${token}`);
         localStorage.setItem("Authorization", `Bearer ${token}`)
         navigate('Products/ProductList', {replace: true});

@@ -11,7 +11,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Security.Claims;
-using System.Security.Cryptography.Xml;
 using System.Text;
 
 namespace MarketPlace.API

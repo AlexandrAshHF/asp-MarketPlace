@@ -1,5 +1,6 @@
 ﻿using MarketPlace.API.Contracts.CategoryDTO;
 using MarketPlace.Application.Services;
+using MarketPlace.Core.Interfaces.DataIntefaces;
 using MarketPlace.Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,8 +13,8 @@ namespace MarketPlace.API.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        private CategoriesService _categoryService;
-        public CategoryController(CategoriesService categoryService)
+        private ICategoryService _categoryService;
+        public CategoryController(ICategoryService categoryService)
         {
             _categoryService = categoryService;
         }
