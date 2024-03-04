@@ -14,7 +14,7 @@ function NavigationBar() {
         else if(location.pathname.includes('/Admin'))
             setNavbar(null);
 
-        else if(location.pathname.includes('/Account'))
+        else if(location.pathname.includes('/Account') && !location.pathname.includes('/Profile'))
             setNavbar(null);
 
         else

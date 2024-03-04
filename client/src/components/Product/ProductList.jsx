@@ -32,12 +32,17 @@ function ProductList({isCatalog = true}){
             return;
 
         let IDs = localStorage.getItem(basketKey).split(',');
+
+        if(IDs[0] == "")
+            IDs.shift();
+        console.log(IDs);
+        console.log(JSON.stringify(IDs));
         var response = await fetch('https://localhost:7004/Product/ProductsRangeById', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({'requestProductsId': IDs})
+            body: JSON.stringify(IDs)
         });
 
         if(response.ok){

@@ -19,13 +19,17 @@ function BasketPage() {
 
         if(response.ok){
             let data = await response.json();
-            let place = [ { value: "", lable: `Choose place` } ];
+            let place = [ { value: "", label: `Choose place` } ];
             data.forEach(element => {
-                place.push({ value: element.id, lable: `${element.city}, ${element.address}` });
+                place.push({ value: element.id, label: `${element.city}, ${element.address}` });
             });
             console.log(place);
             setPlaces(place);
         }
+    }
+
+    async function createOrder(){
+
     }
 
     useEffect(() => {
@@ -34,8 +38,10 @@ function BasketPage() {
 
     return(
         <div className={classes.mainBlock}>
-            <Select options={places} isSearchable onChange={(value) => setSelectedPlace(value)}/>
+            <Select options={places} isSearchable 
+            onChange={(value) => setSelectedPlace(value)} className={classes.selectPlace}/>
             <ProductList isCatalog={false}/>
+            <button>Checkout</button>
         </div>
     );
 }

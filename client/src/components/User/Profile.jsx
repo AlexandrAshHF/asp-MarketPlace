@@ -25,7 +25,7 @@ function Profile() {
         }
         
         else {
-            console.log(response.status);
+            navigate('Account/Login', {replace: true});
         }
     };
 
